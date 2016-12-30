@@ -1,11 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Today's schedule?</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
 <?php
 
-/** Error reporting */
-error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
-
 define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+
 if (isset($_GET["section"]) && isset($_GET["batch"])) {
     $section = $_GET["section"];
     if (strlen($section) > 3 || !preg_match("/^[a-i]$/i", $section) && !preg_match("/^GR[1-9]$/", $section) ) {
@@ -26,7 +30,22 @@ $day_of_week = jddayofweek($julianday);
 
 if ($day_of_week > 5) {
     die('Enjoy the weekend');
+} else {
+    echo '<h3>DAY: '.jddayofweek($julianday,1).'</h3>'.EOL;
 }
+
+?>
+<div class="table-responsive">
+<table class="table table-striped table-hover" style="width: auto !important; margin-top: -70px;" border="6">
+<thead class="thead-inverse"><tr><th>Room</th><th>Timing</th><th>Subject</th></tr></thead>
+
+<?php
+
+/** Error reporting */
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
+
 
 # Assign colors for batch
 if ($batch == 16) {
@@ -46,8 +65,7 @@ require_once dirname(__FILE__) . '/../Classes/PHPExcel/IOFactory.php';
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objPHPExcel = $objReader->load("./BSCS.xlsx");
 $worksheet = $objPHPExcel->setActiveSheetIndex(($day_of_week-1));
-echo "<table style='text-align: center' border='4' class='stats' cellspacing='0'>";
-echo "<tr><th>Room</th><th>Timing</th><th>Subject</th></tr>";
+
 foreach ($worksheet->getColumnIterator() as $column) {
     $cellIterator = $column->getCellIterator();
     foreach ($cellIterator as $cell) {
@@ -63,3 +81,9 @@ foreach ($worksheet->getColumnIterator() as $column) {
         }
     }
 }
+?>
+
+</table>
+</div>
+</body>
+</html>
