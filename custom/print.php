@@ -6,13 +6,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
+<body>
 <?php
 
 define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 
 if (isset($_GET["section"]) && isset($_GET["batch"])) {
     $section = $_GET["section"];
-    if (strlen($section) > 3 || !preg_match("/^[a-i]$/i", $section) && !preg_match("/^GR[1-9]$/", $section) ) {
+    if (strlen($section) > 3 || !preg_match("/^[a-i]$/i", $section) && !preg_match("/^GR[1-9]$/i", $section) ) {
         die('Invalid section');
     }
 
@@ -36,7 +37,7 @@ if ($day_of_week > 5) {
 
 ?>
 <div class="table-responsive">
-<table class="table table-striped table-hover" style="width: auto !important; margin-top: -70px;" border="6">
+<table class="table table-striped table-hover" style="width: auto !important; margin-top: -50px;" border="6">
 <thead class="thead-inverse"><tr><th>Room</th><th>Timing</th><th>Subject</th></tr></thead>
 
 <?php
@@ -45,7 +46,6 @@ if ($day_of_week > 5) {
 error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
-
 
 # Assign colors for batch
 if ($batch == 16) {
@@ -56,9 +56,8 @@ if ($batch == 16) {
     $color = '00B0F0';
 } else if ($batch == 13) {
     $color = 'F79646';
-} else {
-    die('Something went wrong');
 }
+
 /** PHPExcel_IOFactory */
 require_once dirname(__FILE__) . '/../Classes/PHPExcel/IOFactory.php';
 
