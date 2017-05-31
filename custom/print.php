@@ -33,14 +33,7 @@ if ($day_of_week == 6 || $day_of_week == 0) {
     die('Enjoy the weekend');
 } else {
     echo '<h3>DAY: '.jddayofweek($julianday,1).'</h3>'.EOL;
-}
-
-?>
-<div class="table-responsive">
-<table class="table table-striped table-hover" style="width: auto !important; margin-top: -50px;" border="6">
-<thead class="thead-inverse"><tr><th>Room</th><th>Timing</th><th>Subject</th></tr></thead>
-
-<?php
+    }
 
 /** Error reporting */
 error_reporting(E_ALL);
@@ -62,7 +55,21 @@ if ($batch == 16) {
 require_once dirname(__FILE__) . '/../Classes/PHPExcel/IOFactory.php';
 
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
-$objPHPExcel = $objReader->load("./BSCS.xlsx");
+try {
+    $objPHPExcel = $objReader->load("./BSCS.xlsx");
+} catch (Exception $e) {
+    echo $e->getMessage();
+    die();
+}
+
+?>
+
+<div class="table-responsive">
+<table class="table table-striped table-hover" style="width: auto !important; margin-top: -50px;" border="6">
+<thead class="thead-inverse"><tr><th>Room</th><th>Timing</th><th>Subject</th></tr></thead>
+
+<?php
+
 $worksheet = $objPHPExcel->setActiveSheetIndex(($day_of_week-1));
 
 foreach ($worksheet->getColumnIterator() as $column) {
