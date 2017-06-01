@@ -1,7 +1,7 @@
 <?php
 
-require __FILE__ . 'include/db.php';
-require __FILE__ . 'include/email.php';
+require __FILE__ . '/include/db.php';
+require __FILE__ . '/include/email.php';
 
 date_default_timezone_set('Asia/Karachi');
 $julianday = gregoriantojd(date('m'),date('d'),date('Y'));
