@@ -35,4 +35,6 @@ if ($result->num_rows > 0) {
     die("Activation Failed");
 }
 
+$conn->close();
+
 ?>

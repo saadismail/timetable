@@ -33,7 +33,7 @@ if ($day_of_week == 6 || $day_of_week == 0) {
     die('Enjoy the weekend');
 } else {
     echo '<h3>DAY: '.jddayofweek($julianday,1).'</h3>'.EOL;
-    }
+}
 
 /** Error reporting */
 error_reporting(E_ALL);

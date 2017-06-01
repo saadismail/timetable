@@ -33,7 +33,7 @@ require "include/email.php"
     <div class="form-group">
         <label class="control-label col-sm-2" for="email">Email:</label>
         <div class="col-sm-10">
-            <input type="email" class="form-control" id="email" name="email" required placeholder="Enter email (k1#####@nu.edu.pk)" pattern="k1[0-9]{5}@nu.edu.pk$">
+            <input type="email" class="form-control" id="email" name="email" required placeholder="Enter email (k16####@nu.edu.pk)" pattern="k16[0-9]{4}@nu.edu.pk$">
         </div>
     </div>
     <table class="table">
@@ -86,26 +86,23 @@ require "include/email.php"
         $email = $_POST['email'];
 
         // Form the valid format for subjects and sections
-        $subjects = "{";
-        $sections = "{";
+        $subjects = "";
+        $sections = "";
         if (isset($_POST['sections'])) {
             $sectionstmp = $_POST['sections'];
             for ($i = 0; $i < sizeof($sectionstmp); $i++) {
                 if ($sectionstmp[$i]) {
-                    if (strlen($sectionstmp[$i]) > 3 || !preg_match("/^[a-i]$/i", $sectionstmp[$i]) && !preg_match("/^GR[1-9]$/i", $sectionstmp[$i])) {
+                    if (strlen($sectionstmp[$i]) > 3 || !preg_match("/^[a-i]$/i", $sectionstmp[$i]) && !preg_match("/^[a-i][1-2]{1}$/i", $sectionstmp[$i]) && !preg_match("/^GR[1-9]$/i", $sectionstmp[$i])) {
                         die('Invalid section');
                     }
                     $subjects = $subjects . ($i + 1) . ",";
                     $sections = $sections . $sectionstmp[$i] . ",";
-                } else {
                 }
             }
             // Remove last comma
             $subjects = rtrim($subjects, ',');
             $sections = rtrim($sections, ',');
         }
-        $subjects = $subjects . "}";
-        $sections = $sections . "}";
 
         // Check if user with email is already registered
         $sql = "SELECT id FROM students WHERE `email` = '$email'";
@@ -116,7 +113,7 @@ require "include/email.php"
 
         $sql = "INSERT INTO `students` (`id`, `active`, `name`, `batch`, `email`, `subjects`, `sections`) VALUES (NULL, '0', '$name', '$batch', '$email', '$subjects', '$sections')";
         if ($conn->query($sql) == TRUE) {
-            echo "Successfully Registered";
+            echo "Successfully Registered<br><br>";
             $string = generateRandomString(20);
 
             $sql = "SELECT id FROM `students` WHERE `email` = '$email'";
@@ -131,7 +128,7 @@ require "include/email.php"
             $mail->addAddress($email, $name);
 
             $mail->Subject = "Verify your email address";
-            $mail->Body = "Assalam-u-Alaikum ".$name.",<br><br>"."Thank you for registering for Timetable Notifier. <br> Please verify your email address by opening this link: "."<a href=\"http://localhost/activate.php?id=$string&email=$email\">Verify</a>";
+            $mail->Body = "Assalam-u-Alaikum ".$name.",<br><br>"."Thank you for registering for Timetable Notifier. <br> Please verify your email address by opening this link: "."<a href=\"http://cdn.saad.ninja/activate.php?id=$string&email=$email\">Verify</a>";
 
             if ($mail->send()) {
                 echo "Please check your email inbox for verfication email";
@@ -142,6 +139,8 @@ require "include/email.php"
             die("Something went wrong");
         }
     }
+
+    $conn->close();
 ?>
 
 </body>
