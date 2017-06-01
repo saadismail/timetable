@@ -13,6 +13,7 @@ require "include/email.php"
 </head>
 
 <body>
+<div class="container">
 
 <h3 style="text-align: center;">Register</h3>
 <br>
@@ -66,8 +67,8 @@ require "include/email.php"
             </tbody>
         </table>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" name="submit" class="btn btn-default">Register</button>
+            <div class="pull-right">
+                <button type="submit" name="submit" class="btn btn-primary">Register</button>
             </div>
         </div>
     </form>
@@ -143,5 +144,6 @@ require "include/email.php"
     $conn->close();
 ?>
 
+</div>
 </body>
 </html>
