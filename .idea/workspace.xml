@@ -30,13 +30,13 @@
       <file leaf-file-name="cron.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cron.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="24" lean-forward="false" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+            <state relative-caret-position="126">
+              <caret line="7" column="35" lean-forward="true" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
               <folding>
-                <marker date="1496341838259" expanded="true" signature="822:892" ph="SELECT `emai... students" />
-                <marker date="1496341838259" expanded="true" signature="1713:1725" ph="..." />
-                <marker date="1496341838259" expanded="true" signature="1926:1969" ph="SELECT `shor... subjects" />
-                <marker date="1496341838259" expanded="true" signature="1926:1983" ph="SELECT `shor... subjects" />
+                <marker date="1496342833449" expanded="true" signature="840:910" ph="SELECT `emai... students" />
+                <marker date="1496342833449" expanded="true" signature="1731:1743" ph="..." />
+                <marker date="1496342833449" expanded="true" signature="1944:1987" ph="SELECT `shor... subjects" />
+                <marker date="1496342833449" expanded="true" signature="1944:2001" ph="SELECT `shor... subjects" />
               </folding>
             </state>
           </provider>
@@ -62,16 +62,15 @@
       <file leaf-file-name="register.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/register.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2340">
-              <caret line="130" column="210" lean-forward="false" selection-start-line="130" selection-start-column="210" selection-end-line="130" selection-end-column="210" />
+            <state relative-caret-position="198">
+              <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
               <folding>
-                <marker date="1496316871168" expanded="true" signature="1512:1554" ph="SELECT id, n... subjects" />
-                <marker date="1496316871168" expanded="true" signature="1875:2002" ph="..." />
-                <marker date="1496316871168" expanded="true" signature="1986:2002" ph="..." />
-                <marker date="1496316871168" expanded="true" signature="3678:3726" ph="SELECT id FR... students" />
-                <marker date="1496316871168" expanded="true" signature="3871:4034" ph="INSERT INTO `students`... " />
-                <marker date="1496316871168" expanded="true" signature="4200:4250" ph="SELECT id FR... students" />
-                <marker date="1496316871168" expanded="true" signature="4358:4439" ph="INSERT INTO `vercode`... " />
+                <element signature="n#style#0;n#h3#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1496342778410" expanded="true" signature="1536:1578" ph="SELECT id, n... subjects" />
+                <marker date="1496342778410" expanded="true" signature="3687:3735" ph="SELECT id FR... students" />
+                <marker date="1496342778410" expanded="true" signature="3880:4043" ph="INSERT INTO `students`... " />
+                <marker date="1496342778410" expanded="true" signature="4209:4259" ph="SELECT id FR... students" />
+                <marker date="1496342778410" expanded="true" signature="4367:4448" ph="INSERT INTO `vercode`... " />
               </folding>
             </state>
           </provider>
@@ -335,7 +334,7 @@
       <workItem from="1496137969984" duration="2713000" />
       <workItem from="1496192281360" duration="21524000" />
       <workItem from="1496300453065" duration="14935000" />
-      <workItem from="1496340386807" duration="1197000" />
+      <workItem from="1496340386807" duration="2095000" />
     </task>
     <task id="LOCAL-00001" summary="Push updated code">
       <created>1496234962395</created>
@@ -358,11 +357,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496341480440</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="forward slash missing in includes in cron.php">
+      <created>1496341888812</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1496341888812</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40919000" />
+    <option name="totallyTimeSpent" value="41817000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="52" y="-11" width="1229" height="812" extended-state="6" />
@@ -370,11 +376,11 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24694377" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32952926" sideWeight="0.50611246" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32952926" sideWeight="0.5028525" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32952926" sideWeight="0.49388754" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952926" sideWeight="0.49388754" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33951497" sideWeight="0.4775876" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32952926" sideWeight="0.4971475" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -411,7 +417,8 @@
     <MESSAGE value="Push updated code" />
     <MESSAGE value="v0.1" />
     <MESSAGE value="Add dummy .sql" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add dummy .sql" />
+    <MESSAGE value="forward slash missing in includes in cron.php" />
+    <option name="LAST_COMMIT_MESSAGE" value="forward slash missing in includes in cron.php" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -423,10 +430,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1496341838259" expanded="true" signature="822:892" ph="SELECT `emai... students" />
-            <marker date="1496341838259" expanded="true" signature="1713:1725" ph="..." />
-            <marker date="1496341838259" expanded="true" signature="1926:1969" ph="SELECT `shor... subjects" />
-            <marker date="1496341838259" expanded="true" signature="1926:1983" ph="SELECT `shor... subjects" />
+            <marker date="1496342833449" expanded="true" signature="840:910" ph="SELECT `emai... students" />
+            <marker date="1496342833449" expanded="true" signature="1731:1743" ph="..." />
+            <marker date="1496342833449" expanded="true" signature="1944:1987" ph="SELECT `shor... subjects" />
+            <marker date="1496342833449" expanded="true" signature="1944:2001" ph="SELECT `shor... subjects" />
           </folding>
         </state>
       </provider>
@@ -451,13 +458,12 @@
         <state relative-caret-position="2340">
           <caret line="130" column="210" lean-forward="false" selection-start-line="130" selection-start-column="210" selection-end-line="130" selection-end-column="210" />
           <folding>
-            <marker date="1496316871168" expanded="true" signature="1512:1554" ph="SELECT id, n... subjects" />
-            <marker date="1496316871168" expanded="true" signature="1875:2002" ph="..." />
-            <marker date="1496316871168" expanded="true" signature="1986:2002" ph="..." />
-            <marker date="1496316871168" expanded="true" signature="3678:3726" ph="SELECT id FR... students" />
-            <marker date="1496316871168" expanded="true" signature="3871:4034" ph="INSERT INTO `students`... " />
-            <marker date="1496316871168" expanded="true" signature="4200:4250" ph="SELECT id FR... students" />
-            <marker date="1496316871168" expanded="true" signature="4358:4439" ph="INSERT INTO `vercode`... " />
+            <element signature="n#style#0;n#h3#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1496342778410" expanded="true" signature="1536:1578" ph="SELECT id, n... subjects" />
+            <marker date="1496342778410" expanded="true" signature="3687:3735" ph="SELECT id FR... students" />
+            <marker date="1496342778410" expanded="true" signature="3880:4043" ph="INSERT INTO `students`... " />
+            <marker date="1496342778410" expanded="true" signature="4209:4259" ph="SELECT id FR... students" />
+            <marker date="1496342778410" expanded="true" signature="4367:4448" ph="INSERT INTO `vercode`... " />
           </folding>
         </state>
       </provider>
@@ -499,10 +505,10 @@
         <state relative-caret-position="702">
           <caret line="39" column="65" lean-forward="true" selection-start-line="39" selection-start-column="65" selection-end-line="39" selection-end-column="65" />
           <folding>
-            <marker date="1496341838259" expanded="true" signature="822:892" ph="SELECT `emai... students" />
-            <marker date="1496341838259" expanded="true" signature="1713:1725" ph="..." />
-            <marker date="1496341838259" expanded="true" signature="1926:1969" ph="SELECT `shor... subjects" />
-            <marker date="1496341838259" expanded="true" signature="1926:1983" ph="SELECT `shor... subjects" />
+            <marker date="1496342833449" expanded="true" signature="840:910" ph="SELECT `emai... students" />
+            <marker date="1496342833449" expanded="true" signature="1731:1743" ph="..." />
+            <marker date="1496342833449" expanded="true" signature="1944:1987" ph="SELECT `shor... subjects" />
+            <marker date="1496342833449" expanded="true" signature="1944:2001" ph="SELECT `shor... subjects" />
           </folding>
         </state>
       </provider>
@@ -611,29 +617,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/register.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2340">
-          <caret line="130" column="210" lean-forward="false" selection-start-line="130" selection-start-column="210" selection-end-line="130" selection-end-column="210" />
+        <state relative-caret-position="198">
+          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
           <folding>
-            <marker date="1496316871168" expanded="true" signature="1512:1554" ph="SELECT id, n... subjects" />
-            <marker date="1496316871168" expanded="true" signature="1875:2002" ph="..." />
-            <marker date="1496316871168" expanded="true" signature="1986:2002" ph="..." />
-            <marker date="1496316871168" expanded="true" signature="3678:3726" ph="SELECT id FR... students" />
-            <marker date="1496316871168" expanded="true" signature="3871:4034" ph="INSERT INTO `students`... " />
-            <marker date="1496316871168" expanded="true" signature="4200:4250" ph="SELECT id FR... students" />
-            <marker date="1496316871168" expanded="true" signature="4358:4439" ph="INSERT INTO `vercode`... " />
+            <element signature="n#style#0;n#h3#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1496342778410" expanded="true" signature="1536:1578" ph="SELECT id, n... subjects" />
+            <marker date="1496342778410" expanded="true" signature="3687:3735" ph="SELECT id FR... students" />
+            <marker date="1496342778410" expanded="true" signature="3880:4043" ph="INSERT INTO `students`... " />
+            <marker date="1496342778410" expanded="true" signature="4209:4259" ph="SELECT id FR... students" />
+            <marker date="1496342778410" expanded="true" signature="4367:4448" ph="INSERT INTO `vercode`... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cron.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="24" lean-forward="false" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+        <state relative-caret-position="126">
+          <caret line="7" column="35" lean-forward="true" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
           <folding>
-            <marker date="1496341838259" expanded="true" signature="822:892" ph="SELECT `emai... students" />
-            <marker date="1496341838259" expanded="true" signature="1713:1725" ph="..." />
-            <marker date="1496341838259" expanded="true" signature="1926:1969" ph="SELECT `shor... subjects" />
-            <marker date="1496341838259" expanded="true" signature="1926:1983" ph="SELECT `shor... subjects" />
+            <marker date="1496342833449" expanded="true" signature="840:910" ph="SELECT `emai... students" />
+            <marker date="1496342833449" expanded="true" signature="1731:1743" ph="..." />
+            <marker date="1496342833449" expanded="true" signature="1944:1987" ph="SELECT `shor... subjects" />
+            <marker date="1496342833449" expanded="true" signature="1944:2001" ph="SELECT `shor... subjects" />
           </folding>
         </state>
       </provider>
