@@ -56,9 +56,9 @@ require "include/email.php"
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
-            echo "<th scope=\"row\">" . $row[id] . "</th>";
-            echo "<td>" . $row[name] . "</td>";
-            echo "<td>" . $row[code] . "</td>";
+            echo "<th scope=\"row\">" . $row['id'] . "</th>";
+            echo "<td>" . $row['name'] . "</td>";
+            echo "<td>" . $row['code'] . "</td>";
             echo "<td><input type='text' class=\"form-control\" placeholder='Enter section (a-i || GR(1-9))' name=\"sections[]\"/>";
             echo "</tr>";
         }
