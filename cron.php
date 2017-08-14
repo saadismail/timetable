@@ -66,7 +66,7 @@ if ($result->num_rows > 0) {
                 $cellIterator = $column->getCellIterator();
                 foreach ($cellIterator as $cell) {
                     if (!is_null($cell) && !is_null($cell->getCalculatedValue())) {
-                        if (strripos($cell->getCalculatedValue(), $short) !== false) {
+                        if (strpos($cell->getCalculatedValue(), $short) !== false) {
                             if (strripos($cell->getCalculatedValue(), '+' . $section) !== false || strripos($cell->getCalculatedValue(), ' ' . $section . ' ') !== false  || strripos($cell->getCalculatedValue(), ' ' . $section . '(') !== false || strripos($cell->getCalculatedValue(), '-' . $section) !== false || strripos($cell->getCalculatedValue(), ',' . $section) !== false || strripos($cell->getCalculatedValue(), $section . ',') !== false) {
                                 $colindex = substr($cell->getCoordinate(), 0, 1);
                                 $rowindex = substr($cell->getCoordinate(), 1, 2);
