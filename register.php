@@ -58,6 +58,7 @@ require "include/email.php"
             echo "<tr>";
             echo "<th scope=\"row\">" . $row['id'] . "</th>";
             echo "<td>" . $row['name'] . "</td>";
+            echo "<td>" . $row['short'] . "</td>";
             echo "<td>" . $row['code'] . "</td>";
             echo "<td><input type='text' class=\"form-control\" placeholder='Enter section (a-i || GR(1-9))' name=\"sections[]\"/>";
             echo "</tr>";
@@ -129,7 +130,7 @@ require "include/email.php"
             $mail->addAddress($email, $name);
 
             $mail->Subject = "Verify your email address";
-            $mail->Body = "Assalam-u-Alaikum ".$name.",<br><br>"."Thank you for registering for Timetable Notifier. <br> Please verify your email address by opening this link: "."<a href=\"http://cdn.saad.ninja/activate.php?id=$string&email=$email\">Verify</a>";
+            $mail->Body = "Assalam-u-Alaikum ".$name.",<br><br>"."Thank you for registering for Timetable Notifications. <br> Please verify your email address by opening this link: "."<a href=\"http://".$_SERVER['SERVER_NAME']."/activate.php?id=$string&email=$email\">Verify</a>";
 
             if ($mail->send()) {
                 echo "Please check your email inbox for verfication email";

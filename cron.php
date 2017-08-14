@@ -17,7 +17,11 @@ PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objReader->setReadDataOnly(true);
 try {
-    $objPHPExcel = $objReader->load("include/BSCS.xlsx");
+    if(file_exists("include/BSCS-modified.xlsx")) {
+        $objPHPExcel = $objReader->load("include/BSCS-modified.xlsx");
+    } else {
+        $objPHPExcel = $objReader->load("include/BSCS.xlsx");
+    }
 } catch (Exception $e) {
     echo $e->getMessage();
     die();
@@ -69,7 +73,7 @@ if ($result->num_rows > 0) {
                                 $timing = $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue();
                                 $room = $objPHPExcel->getActiveSheet()->getCell('A' . $rowindex)->getValue();
                                 $subject = $cell->getCalculatedValue();
-                                $message .= '<tr><td>'.$subject.'</td><td>'.$timing.'</td><td>'.$room.'</tr>';
+                                $message .= '<tr><td>'.$subject.'</td><td>'.$timing.'</td><td>'.$room.'</td></tr>';
                             }
                         }
                     }
@@ -83,14 +87,14 @@ if ($result->num_rows > 0) {
         $message .= '</html>';
         echo $message;
 
-        $mail->clearAddresses();
-        $mail->addAddress($email, $name);
-        $mail->Subject = "Tomorrow's classes";
-        $mail->Body = $message;
+        // $mail->clearAddresses();
+        // $mail->addAddress($email, $name);
+        // $mail->Subject = "Tomorrow's classes";
+        // $mail->Body = $message;
 
-        if (! $mail->send()) {
-            die("Something went wrong");
-        }
+        // if (! $mail->send()) {
+        //     die("Something went wrong");
+        // }
     }
 }
 

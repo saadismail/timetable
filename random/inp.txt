@@ -1,0 +1,61 @@
+1	SS203	Professional Ethics	3.0	Core	Register! 3-Previously Missed Offered Course <New> (Must Take)	 	 	
+2	MT104	Linear Algebra	3.0	Core		Registered	H	
+3	CS211	Discrete Structures	3.0	Core		Registered	H	
+4	CS201	Data Structures	3.0	Core		Registered	B	
+1	CL201	Data Structures Lab   	3.0	Core		Registered	B	
+5	EE213	Comp. Organization & Assembly Lang.	3.0	Core		Registered	H	
+6	EL213	Comp. Organization & Assembly Lang. Lab	1.0	Core		Registered	H	
+7	MG220	Marketing Management	3.0	Elective		Registered	GR3	
+8	SS223	Business Communication - I	3.0	Elective	Register! 6-New Offered Course <New> (Can take)	 	 	
+9	SS118	Psychology	3.0	Elective	Register! 6-New Offered Course <New> (Can take)	 	 	
+10	SS122	English Composition	3.0	Core	Register! 8-Improvement Course (Can take)	 	 	
+11	SS111	Islamic & Religious Studies	3.0	Core	Register! 8-Improvement Course (Can take)	 	 	
+12	SS113	Pakistan Studies	3.0	Core	Register! 8-Improvement Course (Can take)	 	 	
+13	MT115	Calculus - II	3.0	Core	Register! 8-Improvement Course (Can take)	 	 	
+14	EE182	Basic Electronics	3.0	Core	Register! 8-Improvement Course (Can take)	 	 	
+15	CL103	Computer Programming Lab	1.0	Core	Register! 8-Improvement Course (Can take)	 	 	
+16	CL203	Database Systems Lab	1.0	Core	CS201-Data Structures,Not Clear	 	 	
+17	CL205	Operating Systems Lab	1.0	Core	CS201-Data Structures,Not Clear	 	 	
+18	CL307	Computer Networks Lab	1.0	Core	CS201-Data Structures,Not Clear	 	 	
+19	CL309	Object Oriented Analysis & Design Lab	1.0	Core	CS201-Data Structures,Not Clear	 	 	
+20	CS101	Introduction to Computing	3.0	Core	It is Pre-Req of already Passed Course!	 	 	
+21	CS103	Computer Programming	3.0	Core	It is Pre-Req of already Passed Course!	 	 	
+22	CS203	Database Systems	3.0	Core	CS201-Data Structures,Not Clear	 	 	
+23	CS205	Operating Systems	3.0	Core	CS201-Data Structures,Not Clear	 	 	
+24	CS422	Human Computer Interaction	3.0	Core	CS203-Database Systems,Not Clear	 	 	
+25	CS301	Theory of Automata	3.0	Core	CS211-Discrete Structures,Not Clear	 	 	
+26	CS302	Design & Analysis of Algorithms	3.0	Core	CS201-Data Structures,Not Clear	 	 	
+27	CS303	Software Engineering	3.0	Core	CS309-Object Oriented Analysis & Design,Not Clear	 	 	
+28	CS307	Computer Networks	3.0	Core	CS201-Data Structures,Not Clear	 	 	
+29	CS309	Object Oriented Analysis & Design	3.0	Core	CS201-Data Structures,Not Clear	 	 	
+30	CS401	Artificial Intelligence	3.0	Core	Advance Course	 	 	
+31	CS449	Professional Issues in IT	3.0	Core	CS303-Software Engineering,Not Clear	 	 	
+32	CS491	Project - I	3.0	Core	Project-I, Minimum Credit/CGPA Requirement Not Fulfilled	 	 	
+33	CS492	Project - II	3.0	Core	CS491-Project - I,Not Clear	 	 	
+34	EL227	Digital Logic Design - Lab	1.0	Core	It is Pre-Req of already Passed Course!	 	 	
+35	EE227	Digital Logic Design	3.0	Core	It is Pre-Req of already Passed Course!	 	 	
+36	MT206	Probability & Statistics	4.0	Core	Advance Course	 	 	
+37	CL101	Introduction to Computing Lab	1.0	Core	It is Pre-Req of already Passed Course!	 	 	
+38	MT101	Calculus - I	3.0	Core	It is Pre-Req of already Passed Course!	 	 	
+39	SL102	English Language Lab	1.0	Core	It is Pre-Req of already Passed Course!	 	 	
+40	SS102	English Language	3.0	Core	It is Pre-Req of already Passed Course!	 	 	
+41	SS127	Sociology	3.0	Elective	Advance Course	 	 	
+42	SS135	Micro Economics	3.0	Not Degree Part	Not Degree Part	 	 	
+43	SS309	Business Communication - II	3.0	Not Degree Part	SS223-Business Communication - I,Not Clear	 	 	
+44	MT303	Operations Research	3.0	Not Degree Part	Not Degree Part	 	 	
+45	MG335	Communication for Managers	3.0	Not Degree Part	Not Degree Part	 	 	
+46	MG414	Entrepreneurship	3.0	Not Degree Part	Not Degree Part	 	 	
+47	MG448	Accounting and Information System	3.0	Not Degree Part	Not Degree Part	 	 	
+48	CS499	Introduction to Cloud Computing	3.0	Not Degree Part	CS205-Operating Systems,CS307-Computer Networks,Not Clear	 	
+49	CS508	Bio-Informatics	3.0	Not Degree Part	Not Degree Part	 	 	
+50	CS540	Design Patterns	3.0	Not Degree Part	Not Degree Part	 	 	
+51	CS547	Special Topics in Computer Science	3.0	Not Degree Part	Not Degree Part	 	 	
+52	CS567	Information Retrieval & Text Mining	3.0	Not Degree Part	Not Degree Part	 	 	
+53	CS450	Intro. to Software Project Management	3.0	Not Degree Part	Not Degree Part	 	 	
+54	CS481	Data Science	3.0	Not Degree Part	CS201-Data Structures,Not Clear	 	 	
+55	EE204	Computer Architecture	3.0	Not Degree Part	EE213-Comp. Organization & Assembly Lang.,Not Clear	 	 	
+56	CS404	Network Programming	3.0	Not Degree Part	Not Degree Part	 	 	
+57	CS406	Web Programming	3.0	Not Degree Part	Not Degree Part	 	 	
+58	CS411	Network Security	3.0	Not Degree Part	Not Degree Part	 	 	
+59	CS423	Information Processing Techniques	3.0	Not Degree Part	Not Degree Part	 	 	
+60	CS440	Software for Mobile Devices	3.0	Not Degree Part	Not Degree Part	 	 	

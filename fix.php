@@ -16,7 +16,6 @@ try {
     die();
 }
 
-
 for ($i=0; $i<5; $i++) {
     $worksheet = $objPHPExcel->setActiveSheetIndex(($i));
     foreach ($worksheet->getColumnIterator() as $column) {
@@ -31,9 +30,8 @@ for ($i=0; $i<5; $i++) {
     }
 }
 
-
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-$objWriter->save(dirname(__FILE__)."/BSCS2.xlsx");
+$objWriter->save(dirname(__FILE__)."/include/BSCS-modified.xlsx");
 
 
 ?>

@@ -56,20 +56,19 @@ CREATE TABLE `subjects` (
 INSERT INTO `subjects` (`id`, `name`, `short`, `code`) VALUES
 (1, 'Introduction to Computing', 'ITC', 'CS101'),
 (2, 'Introduction to Computing Lab', 'ITC Lab', 'CL101'),
-(3, 'Introduction to Computing Tutorial', 'ITC- Tutorial', 'CL101'),
-(4, 'Calculus - I', 'CAL I', 'MT101'),
-(5, 'Basic Electronics', 'BE', 'EE182'),
-(6, 'English Language', 'ENG', 'SS102'),
-(7, 'Islamic and Religious Studies', 'IRS', 'SS138'),
+(3, 'Calculus - I', 'CAL I', 'MT101'),
+(4, 'Basic Electronics', 'BE', 'EE182'),
+(5, 'English Language', 'ENG', 'SS102'),
+(6, 'English Language Lab', 'ENG', 'SL102'),
+(7, 'Islamic and Religious Studies', 'IRS', 'SS111'),
 (8, 'Ethics', 'Ethics', 'SS203'),
 (9, 'Computer Programming', 'CP', 'CS103'),
 (10, 'Computer Programming Lab', 'CP-Lab', 'CL103'),
-(11, 'Computer Programming Tutorial', 'CP- Tutorial', 'CL103'),
-(12, 'Digital Logic Design', 'DLD', 'EE227'),
-(13, 'Digital Logic Design', 'DLD-Lab', 'EL227'),
-(14, 'Calculus-II', 'Cal-II', 'MT115'),
-(15, 'English Composition', 'Eng Comp.', 'SS122'),
-(16, 'Pakistan Studies', 'Pk. Study', 'SS113');
+(11, 'Digital Logic Design', 'DLD', 'EE227'),
+(12, 'Digital Logic Design', 'DLD-Lab', 'EL227'),
+(13, 'Calculus-II', 'Cal-II', 'MT115'),
+(14, 'English Composition', 'Eng Comp.', 'SS122'),
+(15, 'Pakistan Studies', 'Pk. Study', 'SS113');
 
 -- --------------------------------------------------------
 
