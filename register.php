@@ -110,12 +110,14 @@ require "include/email.php"
         $sql = "SELECT id FROM students WHERE `email` = '$email'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
-            die("User already exists");
+            $message = "User already exists.";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            die();
         }
 
         $sql = "INSERT INTO `students` (`id`, `active`, `name`, `batch`, `email`, `subjects`, `sections`) VALUES (NULL, '0', '$name', '$batch', '$email', '$subjects', '$sections')";
         if ($conn->query($sql) == TRUE) {
-            echo "Successfully Registered<br><br>";
+            $message = "Successfully Registered\n";
             $string = generateRandomString(20);
 
             $sql = "SELECT id FROM `students` WHERE `email` = '$email'";
@@ -133,16 +135,17 @@ require "include/email.php"
             $mail->Body = "Assalam-u-Alaikum ".$name.",<br><br>"."Thank you for registering for Timetable Notifications. <br> Please verify your email address by opening this link: "."<a href=\"http://".$_SERVER['SERVER_NAME']."/activate.php?id=$string&email=$email\">Verify</a>";
 
             if ($mail->send()) {
-                echo "Please check your email inbox for verfication email";
+                $message .= "Please check your email inbox for verfication email";
             } else {
-                die("Something went wrong");
+                $message .= "Verification email couldn't be sent. Please contact help@timetable.host";
             }
         } else {
-            die("Something went wrong");
+            $message = "Something went wrong. Please contact help@timetable.host";
         }
+        echo "<script type='text/javascript'>alert('$message');</script>";
+        
+        $conn->close();
     }
-
-    $conn->close();
 ?>
 
 </div>
