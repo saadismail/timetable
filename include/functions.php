@@ -1,6 +1,7 @@
 <?php
 
-//require_once "PHPMailer/PHPMailerAutoload.php";
+// Don't send emails if development mode is on
+$developmentMode = False;
 
 // Returns a random string of length = $length
 function generateRandomString($length = 10) {

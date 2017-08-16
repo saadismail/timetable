@@ -1,6 +1,7 @@
 <?php
 
 require dirname(__FILE__) . '/include/db.php';
+require dirname(__FILE__) . "/include/functions.php";
 require dirname(__FILE__) . '/include/email.php';
 
 date_default_timezone_set('Asia/Karachi');
@@ -87,14 +88,17 @@ if ($result->num_rows > 0) {
         $message .= '</html>';
         echo $message;
 
-        // $mail->clearAddresses();
-        // $mail->addAddress($email, $name);
-        // $mail->Subject = "Tomorrow's classes";
-        // $mail->Body = $message;
+        // Only send emails if development mode (in functions.php) is false
+        if (!$developmentMode) {
+            $mail->clearAddresses();
+            $mail->addAddress($email, $name);
+            $mail->Subject = "Tomorrow's classes";
+            $mail->Body = $message;
 
-        // if (! $mail->send()) {
-        //     die("Something went wrong");
-        // }
+            if (! $mail->send()) {
+                die("Something went wrong");
+            }
+        }
     }
 }
 

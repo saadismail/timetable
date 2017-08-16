@@ -1,7 +1,9 @@
 <?php
-require "include/db.php";
-require "include/functions.php";
-require "include/email.php"
+
+require dirname(__FILE__) . '/include/db.php';
+require dirname(__FILE__) . "/include/functions.php";
+require dirname(__FILE__) . '/include/email.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -134,10 +136,13 @@ require "include/email.php"
             $mail->Subject = "Verify your email address";
             $mail->Body = "Assalam-u-Alaikum ".$name.",<br><br>"."Thank you for registering for Timetable Notifications. <br> Please verify your email address by opening this link: "."<a href=\"http://".$_SERVER['SERVER_NAME']."/activate.php?id=$string&email=$email\">Verify</a>";
 
-            if ($mail->send()) {
-                $message .= "Please check your email inbox for verfication email";
-            } else {
-                $message .= "Verification email couldn't be sent. Please contact help@timetable.host";
+            // Only send emails if development mode (in functions.php) is false
+            if (!$developmentMode) {
+                            if ($mail->send()) {
+                    $message .= "Please check your email inbox for verfication email";
+                } else {
+                    $message .= "Verification email couldn't be sent. Please contact help@timetable.host";
+                }
             }
         } else {
             $message = "Something went wrong. Please contact help@timetable.host";
