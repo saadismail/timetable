@@ -99,6 +99,12 @@ require dirname(__FILE__) . '/include/email.php';
                     if (strlen($sectionstmp[$i]) > 3 || !preg_match("/^[a-i]$/i", $sectionstmp[$i]) && !preg_match("/^[a-i][1-2]{1}$/i", $sectionstmp[$i]) && !preg_match("/^GR[1-9]$/i", $sectionstmp[$i])) {
                         die('Invalid section');
                     }
+                    if(strlen($sectionstmp[$i]) == 1) {
+                        $sectionstmp[$i] = strtoupper($sectionstmp[$i]);
+                    } else if (strlen($sectionstmp[$i]) == 3) {
+                        $sectionstmp[$i][0] = 'G';
+                        $sectionstmp[$i][1] = 'r';
+                    }
                     $subjects = $subjects . ($i + 1) . ",";
                     $sections = $sections . $sectionstmp[$i] . ",";
                 }
@@ -108,7 +114,7 @@ require dirname(__FILE__) . '/include/email.php';
             $sections = rtrim($sections, ',');
         }
 
-        // Check if user with email is already registered
+        Check if user with email is already registered
         $sql = "SELECT id FROM students WHERE `email` = '$email'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
@@ -116,6 +122,8 @@ require dirname(__FILE__) . '/include/email.php';
             echo "<script type='text/javascript'>alert('$message');</script>";
             die();
         }
+        
+        $message = "";
 
         $sql = "INSERT INTO `students` (`id`, `active`, `name`, `batch`, `email`, `subjects`, `sections`) VALUES (NULL, '0', '$name', '$batch', '$email', '$subjects', '$sections')";
         if ($conn->query($sql) == TRUE) {
@@ -131,14 +139,12 @@ require dirname(__FILE__) . '/include/email.php';
                 die("Something went wrong");
             }
 
-            $mail->addAddress($email, $name);
-
-            $mail->Subject = "Verify your email address";
-            $mail->Body = "Assalam-u-Alaikum ".$name.",<br><br>"."Thank you for registering for Timetable Notifications. <br> Please verify your email address by opening this link: "."<a href=\"http://".$_SERVER['SERVER_NAME']."/activate.php?id=$string&email=$email\">Verify</a>";
-
             // Only send emails if development mode (in functions.php) is false
             if (!$developmentMode) {
-                            if ($mail->send()) {
+                $mail->addAddress($email, $name);
+                $mail->Subject = "Verify your email address";
+                $mail->Body = "Thank you for registering for Timetable Notifications. <br> Open this link to verify your email address: "."<a href=\"http://".$_SERVER['SERVER_NAME']."/activate.php?id=$string&email=$email\">Verify</a>";
+                if ($mail->send()) {
                     $message .= "Please check your email inbox for verfication email";
                 } else {
                     $message .= "Verification email couldn't be sent. Please contact help@timetable.host";
@@ -146,13 +152,14 @@ require dirname(__FILE__) . '/include/email.php';
             }
         } else {
             $message = "Something went wrong. Please contact help@timetable.host";
-        }
+        }  
+        echo $message;
+        $message = "YES";
+        echo $message;
         echo "<script type='text/javascript'>alert('$message');</script>";
-        
         $conn->close();
     }
 ?>
-
 </div>
 </body>
 </html>

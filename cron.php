@@ -19,9 +19,9 @@ $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objReader->setReadDataOnly(true);
 try {
     if(file_exists("include/BSCS-modified.xlsx")) {
-        $objPHPExcel = $objReader->load("include/BSCS-modified.xlsx");
+        $objPHPExcel = $objReader->load(dirname(__FILE__) . "/include/BSCS-modified.xlsx");
     } else {
-        $objPHPExcel = $objReader->load("include/BSCS.xlsx");
+        $objPHPExcel = $objReader->load(dirname(__FILE__) . "/include/BSCS.xlsx");
     }
 } catch (Exception $e) {
     echo $e->getMessage();
@@ -56,7 +56,6 @@ if ($result->num_rows > 0) {
         $message .= '<table class="table table-striped table-hover" style="width: auto;" border="6">';
         $message .= '<thead class="thead-inverse"><tr><th>Subject</th><th>Timing</th><th>Room</th></tr></thead>';
 
-
         for ($i=0; $i<sizeof($sections); $i++) {
             $sql = "SELECT `short` FROM subjects WHERE `id` = '$subjects[$i]'";
             $row = $conn->query($sql)->fetch_assoc();
@@ -74,6 +73,13 @@ if ($result->num_rows > 0) {
                                 $timing = $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue();
                                 $room = $objPHPExcel->getActiveSheet()->getCell('A' . $rowindex)->getValue();
                                 $subject = $cell->getCalculatedValue();
+                                // Manipulate $timing for labs (assumes that labs are of 3 hours)
+                                if (strpos($cell->getCalculatedValue(), "Lab") !== false) {
+                                    $firstTiming = explode('-', $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue());
+                                    $colindex++; $colindex++;
+                                    $lastTiming = explode('-', $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue());
+                                    $timing = $firstTiming[0].'-'.$lastTiming[1];
+                                }
                                 $message .= '<tr><td>'.$subject.'</td><td>'.$timing.'</td><td>'.$room.'</td></tr>';
                             }
                         }
