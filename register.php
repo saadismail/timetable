@@ -114,7 +114,7 @@ require dirname(__FILE__) . '/include/email.php';
             $sections = rtrim($sections, ',');
         }
 
-        Check if user with email is already registered
+        // Check if user with email is already registered
         $sql = "SELECT id FROM students WHERE `email` = '$email'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
