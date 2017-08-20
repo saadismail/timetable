@@ -70,13 +70,13 @@ class PHPMailer
      * The From email address for the message.
      * @var string
      */
-    public $From = 'root@localhost';
+    public $From = 'smtp@saad.ninja';
 
     /**
      * The From name of the message.
      * @var string
      */
-    public $FromName = 'Root User';
+    public $FromName = 'Timetable Notifier';
 
     /**
      * The Sender email (Return-Path) of the message.
@@ -160,7 +160,7 @@ class PHPMailer
      * Options: "mail", "sendmail", or "smtp".
      * @var string
      */
-    public $Mailer = 'mail';
+    public $Mailer = 'smtp';
 
     /**
      * The path to the sendmail program.
@@ -677,6 +677,8 @@ class PHPMailer
      * but it will do)
      * @param string $to To
      * @param string $subject Subject
+
+
      * @param string $body Message Body
      * @param string $header Additional Header(s)
      * @param string $params Params

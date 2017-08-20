@@ -11,7 +11,8 @@ require dirname(__FILE__) . '/include/email.php';
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <?php if(file_exists("include/bootstrap.min.css")) echo "<link rel=\"stylesheet\" href=\"include/bootstrap.min.css\">"; 
+    else echo "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">"; ?>
 </head>
 
 <body>
@@ -36,7 +37,7 @@ require dirname(__FILE__) . '/include/email.php';
     <div class="form-group">
         <label class="control-label col-sm-2" for="email">Email:</label>
         <div class="col-sm-10">
-            <input type="email" class="form-control" id="email" name="email" required placeholder="Enter email (k16####@nu.edu.pk)" pattern="k16[0-9]{4}@nu.edu.pk$">
+            <input type="email" class="form-control" id="email" name="email" required placeholder="Enter email (k1#####@nu.edu.pk)" pattern="k1[0-9]{5}@nu.edu.pk$">
         </div>
     </div>
     <table class="table">
@@ -62,7 +63,7 @@ require dirname(__FILE__) . '/include/email.php';
             echo "<td>" . $row['name'] . "</td>";
             echo "<td>" . $row['short'] . "</td>";
             echo "<td>" . $row['code'] . "</td>";
-            echo "<td><input type='text' class=\"form-control\" placeholder='Enter section (a-i || GR(1-9))' name=\"sections[]\"/>";
+            echo "<td><input type='text' class=\"form-control\" placeholder='Enter section (A-I || Gr#)' name=\"sections[]\"/>";
             echo "</tr>";
         }
     }
@@ -115,13 +116,13 @@ require dirname(__FILE__) . '/include/email.php';
         }
 
         // Check if user with email is already registered
-        $sql = "SELECT id FROM students WHERE `email` = '$email'";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            $message = "User already exists.";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-            die();
-        }
+        // $sql = "SELECT id FROM students WHERE `email` = '$email'";
+        // $result = $conn->query($sql);
+        // if ($result->num_rows > 0) {
+        //     $message = "User already exists.";
+        //     echo "<script type='text/javascript'>alert('$message');</script>";
+        //     die();
+        // }
         
         $message = "";
 

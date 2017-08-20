@@ -87,9 +87,9 @@ if ($result->num_rows > 0) {
                 }
             }
         }
-
         $message .= '</table>';
         $message .= '</div>';
+        $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK<b>';
         $message .= '</body>';
         $message .= '</html>';
         echo $message;
