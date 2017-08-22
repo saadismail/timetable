@@ -61,7 +61,7 @@ if ($result->num_rows > 0) {
             $row = $conn->query($sql)->fetch_assoc();
             $short = $row['short'];
             $section = $sections[$i];
-            // DS DS-Lab
+            
             foreach ($worksheet->getColumnIterator() as $column) {
                 $cellIterator = $column->getCellIterator();
                 foreach ($cellIterator as $cell) {

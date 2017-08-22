@@ -116,7 +116,13 @@ require dirname(__FILE__) . '/include/email.php';
         }
 
         // Check if user with email is already registered
- 
+        $sql = "SELECT id FROM students WHERE `email` = '$email'";         + 
+        $result = $conn->query($sql);      
+        if ($result->num_rows > 0) {       
+            $message = "User already exists.";     
+            echo "<script type='text/javascript'>alert('$message');</script>";     
+            die();     
+        }
         
         $message = "";
 
