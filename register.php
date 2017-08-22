@@ -147,6 +147,7 @@ require dirname(__FILE__) . '/include/email.php';
                 $mail->Body = "Thank you for registering for Timetable Notifications. <br> Open this link to verify your email address: "."<a href=\"http://".$_SERVER['SERVER_NAME']."/activate.php?id=$string&email=$email\">Verify</a>";
                 if ($mail->send()) {
                     $message .= "Please check your email inbox for verfication email";
+                    alertUser("Registered Successfully, Please check your email for verification email");
                 } else {
                     $message .= "Verification email couldn't be sent. Please contact help@timetable.host";
                 }
@@ -154,7 +155,7 @@ require dirname(__FILE__) . '/include/email.php';
         } else {
             $message = "Something went wrong. Please contact help@timetable.host";
         }
-        alertUser($message);
+        // alertUser($message);
         $conn->close();
     }
 ?>
