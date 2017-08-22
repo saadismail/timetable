@@ -14,5 +14,10 @@ function generateRandomString($length = 10) {
     return $randomString;
 }
 
+// Displays $message in javascript alert box
+function alertUser($message) {
+	echo "<script type='text/javascript'>alert('".$message."');</script>";
+}
+
 
 ?>

@@ -61,26 +61,29 @@ if ($result->num_rows > 0) {
             $row = $conn->query($sql)->fetch_assoc();
             $short = $row['short'];
             $section = $sections[$i];
-
+            // DS DS-Lab
             foreach ($worksheet->getColumnIterator() as $column) {
                 $cellIterator = $column->getCellIterator();
                 foreach ($cellIterator as $cell) {
                     if (!is_null($cell) && !is_null($cell->getCalculatedValue())) {
                         if (strpos($cell->getCalculatedValue(), $short) !== false) {
-                            if (strripos($cell->getCalculatedValue(), '+' . $section) !== false || strripos($cell->getCalculatedValue(), ' ' . $section . ' ') !== false  || strripos($cell->getCalculatedValue(), ' ' . $section . '(') !== false || strripos($cell->getCalculatedValue(), '-' . $section) !== false || strripos($cell->getCalculatedValue(), ',' . $section) !== false || strripos($cell->getCalculatedValue(), $section . ',') !== false) {
-                                $colindex = substr($cell->getCoordinate(), 0, 1);
-                                $rowindex = substr($cell->getCoordinate(), 1, 2);
-                                $timing = $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue();
-                                $room = $objPHPExcel->getActiveSheet()->getCell('A' . $rowindex)->getValue();
-                                $subject = $cell->getCalculatedValue();
-                                // Manipulate $timing for labs (assumes that labs are of 3 hours)
-                                if (strpos($cell->getCalculatedValue(), "Lab") !== false) {
-                                    $firstTiming = explode('-', $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue());
-                                    $colindex++; $colindex++;
-                                    $lastTiming = explode('-', $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue());
-                                    $timing = $firstTiming[0].'-'.$lastTiming[1];
+                            // Dont show labs for course classes
+                            if (strpos($short, "Lab") == false && strpos($cell->getCalculatedValue(), "Lab") == false || strpos($short, "Lab") !== false && strpos($cell->getCalculatedValue(), "Lab") !== false) {
+                                if (strripos($cell->getCalculatedValue(), '+' . $section) !== false || strripos($cell->getCalculatedValue(), ' ' . $section . ' ') !== false  || strripos($cell->getCalculatedValue(), ' ' . $section . '(') !== false || strripos($cell->getCalculatedValue(), '-' . $section) !== false || strripos($cell->getCalculatedValue(), ',' . $section) !== false || strripos($cell->getCalculatedValue(), $section . ',') !== false) {
+                                    $colindex = substr($cell->getCoordinate(), 0, 1);
+                                    $rowindex = substr($cell->getCoordinate(), 1, 2);
+                                    $timing = $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue();
+                                    $room = $objPHPExcel->getActiveSheet()->getCell('A' . $rowindex)->getValue();
+                                    $subject = $cell->getCalculatedValue();
+                                    // Manipulate $timing for labs (assumes that labs are of 3 hours)
+                                    if (strpos($cell->getCalculatedValue(), "Lab") !== false) {
+                                        $firstTiming = explode('-', $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue());
+                                        $colindex++; $colindex++;
+                                        $lastTiming = explode('-', $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue());
+                                        $timing = $firstTiming[0].'-'.$lastTiming[1];
+                                    }
+                                    $message .= '<tr><td>'.$subject.'</td><td>'.$timing.'</td><td>'.$room.'</td></tr>';
                                 }
-                                $message .= '<tr><td>'.$subject.'</td><td>'.$timing.'</td><td>'.$room.'</td></tr>';
                             }
                         }
                     }
