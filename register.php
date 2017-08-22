@@ -149,11 +149,11 @@ require dirname(__FILE__) . '/include/email.php';
                     $message .= "Please check your email inbox for verfication email";
                     alertUser("Registered Successfully, Please check your email for verification email");
                 } else {
-                    $message .= "Verification email couldn't be sent. Please contact help@timetable.host";
+                    $message .= "Verification email couldn't be sent. Please contact k164060@nu.edu.pk";
                 }
             }
         } else {
-            $message = "Something went wrong. Please contact help@timetable.host";
+            $message = "Something went wrong. Please contact k164060@nu.edu.pk";
         }
         // alertUser($message);
         $conn->close();

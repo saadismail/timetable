@@ -59,7 +59,7 @@ require dirname(__FILE__) . '/include/email.php';
                 if ($mail->send()) {
                 	alertUser("Please check your email inbox for confirmation");
                 } else {
-                	alertUser("Confirmation email could not be sent. Please contact help@timetable.host");
+                	alertUser("Confirmation email could not be sent. Please contact k164060@nu.edu.pk");
                 }
             }
         } else {
