@@ -52,8 +52,9 @@ if ($result->num_rows > 0) {
         $message .= '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">';
         $message .= '</head>';
         $message .= '<body>';
+        $message .= 'Below is the schedule of your classes tomorrow: <br><br>';
         $message .= '<div class="table-responsive">';
-        $message .= '<table class="table table-striped table-hover" style="width: auto;" border="6">';
+        $message .= '<table class="table table-striped table-hover" style="width: auto;" border="6" >';
         $message .= '<thead class="thead-inverse"><tr><th>Subject</th><th>Timing</th><th>Room</th></tr></thead>';
 
         for ($i=0; $i<sizeof($sections); $i++) {
@@ -92,7 +93,7 @@ if ($result->num_rows > 0) {
         }
         $message .= '</table>';
         $message .= '</div>';
-        $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK<b>';
+        $message .= '<b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK<b>';
         $message .= '</body>';
         $message .= '</html>';
         echo $message;
