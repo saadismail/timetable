@@ -8,6 +8,9 @@ date_default_timezone_set('Asia/Karachi');
 $julianday = gregoriantojd(date('m'),date('d'),date('Y'));
 $day_of_week = jddayofweek($julianday);
 
+// Stop execution if next day is weekend or invalid $day_of_week
+if ($day_of_week < 0 || $day_of_week > 4) die();
+
 /** PHPExcel_IOFactory */
 require_once dirname(__FILE__) . '/Classes/PHPExcel/IOFactory.php';
 
@@ -48,14 +51,10 @@ if ($result->num_rows > 0) {
         $sections = $row['sections'];
         $sections = explode(',', $sections);
 
-        $message = '<html><head>';
-        $message .= '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">';
-        $message .= '</head>';
-        $message .= '<body>';
+        $message = '<html><body>';
         $message .= 'Below is the schedule of your classes tomorrow: <br><br>';
-        $message .= '<div class="table-responsive">';
-        $message .= '<table class="table table-striped table-hover" style="width: auto;" border="6" >';
-        $message .= '<thead class="thead-inverse"><tr><th>Subject</th><th>Timing</th><th>Room</th></tr></thead>';
+        $message .= '<table rules="all" style="border-color: #666;" cellpadding="10" border="6" >';
+        $message .= "<tr style='background: #eee;'><td>Subject</td><td>Timing</td><td>Room</td></tr>";
 
         for ($i=0; $i<sizeof($sections); $i++) {
             $sql = "SELECT `short` FROM subjects WHERE `id` = '$subjects[$i]'";
@@ -83,7 +82,7 @@ if ($result->num_rows > 0) {
                                         $lastTiming = explode('-', $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue());
                                         $timing = $firstTiming[0].'-'.$lastTiming[1];
                                     }
-                                    $message .= '<tr><td>'.$subject.'</td><td>'.$timing.'</td><td>'.$room.'</td></tr>';
+                                    $message .= "<tr><td><strong>".$subject."</strong> </td><td>".$timing."</td><td>".$room."</td></tr>";
                                 }
                             }
                         }
@@ -91,11 +90,9 @@ if ($result->num_rows > 0) {
                 }
             }
         }
-        $message .= '</table>';
-        $message .= '</div>';
-        $message .= '<b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK<b>';
-        $message .= '</body>';
-        $message .= '</html>';
+        $message .= "</table>";
+        $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK<b>';
+        $message .= "</body></html>";
         echo $message;
 
         // Only send emails if development mode (in functions.php) is false
