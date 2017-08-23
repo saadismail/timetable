@@ -35,7 +35,7 @@ $worksheet = $objPHPExcel->setActiveSheetIndex(($day_of_week));
 
 $sql = "SELECT `active`, `name`, `email`, `subjects`, `sections` FROM students";
 $result = $conn->query($sql);
-
+$current = 0;
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         // Skip if the user has not verified his email address yet
@@ -61,7 +61,6 @@ if ($result->num_rows > 0) {
             $row = $conn->query($sql)->fetch_assoc();
             $short = $row['short'];
             $section = $sections[$i];
-            
             foreach ($worksheet->getColumnIterator() as $column) {
                 $cellIterator = $column->getCellIterator();
                 foreach ($cellIterator as $cell) {
@@ -82,7 +81,10 @@ if ($result->num_rows > 0) {
                                         $lastTiming = explode('-', $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue());
                                         $timing = $firstTiming[0].'-'.$lastTiming[1];
                                     }
-                                    $message .= "<tr><td><strong>".$subject."</strong> </td><td>".$timing."</td><td>".$room."</td></tr>";
+                                    $entries[$current]['subject'] = $subject;
+                                    $entries[$current]['timing'] = $timing;
+                                    $entries[$current]['room'] = $room;
+                                    $current++;
                                 }
                             }
                         }
@@ -90,6 +92,13 @@ if ($result->num_rows > 0) {
                 }
             }
         }
+
+        // Sorts $entries with respect to timing
+        usort($entries, "cmp");
+        for ($i=0; $i<sizeof($entries); $i++){
+            $message .= "<tr><td><strong>".$entries[$i]['subject']."</strong> </td><td>".$entries[$i]['timing']."</td><td>".$entries[$i]['room']."</td></tr>";
+        }
+
         $message .= "</table>";
         $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK<b>';
         $message .= "</body></html>";

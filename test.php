@@ -1,12 +1,14 @@
 <?php
 
-$message = '<html><body>';
-$message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
-$message .= "<tr style='background: #eee;'><td><strong>Subject:</strong> </td><td>Timing</td><td>Room</td></tr>";
-$message .= "<tr><td><strong>".$subject."</strong> </td><td>".$timing."</td><td>".$room."</td></tr>";
-$message .= "</table>";
-$message .= "</body></html>";
+function cmp($a, $b)
+{
+	$timing1 = $a; $timing2 = $b;
+    if ($timing1 >= 8 && $timing2 >= 8 || $timing1 <= 3 && $timing2 <= 3) {
+        return ($timing1 < $timing2) ? -1 : 1;
+    }
+    return ($timing1 < $timing2) ? 1 : -1;
 
-echo $message;
+}
 
+echo cmp(3, 12);
 ?>
