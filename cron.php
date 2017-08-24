@@ -93,10 +93,13 @@ if ($result->num_rows > 0) {
             }
         }
 
-        // Sorts $entries with respect to timing
-        usort($entries, "cmp");
-        for ($i=0; $i<sizeof($entries); $i++){
-            $message .= "<tr><td><strong>".$entries[$i]['subject']."</strong> </td><td>".$entries[$i]['timing']."</td><td>".$entries[$i]['room']."</td></tr>";
+        // Only go here if $entries is not empty
+        if (!empty($entries)) {
+            // Sorts $entries with respect to timing
+            usort($entries, "cmp");
+            for ($i=0; $i<sizeof($entries); $i++){
+                $message .= "<tr><td><strong>".$entries[$i]['subject']."</strong> </td><td>".$entries[$i]['timing']."</td><td>".$entries[$i]['room']."</td></tr>";
+            }
         }
 
         $message .= "</table>";
@@ -105,7 +108,7 @@ if ($result->num_rows > 0) {
         echo $message;
 
         // Only send emails if development mode (in functions.php) is false
-        if (!$developmentMode) {
+        if (!$developmentMode && !empty($entries)) {
             $mail->clearAddresses();
             $mail->addAddress($email, $name);
             $mail->Subject = "Tomorrow's classes";
@@ -116,6 +119,7 @@ if ($result->num_rows > 0) {
             }
         }
         unset($entries);
+        echo "<br> <br>";
     }
 }
 
