@@ -144,7 +144,8 @@ require dirname(__FILE__) . '/include/email.php';
             if (!$developmentMode) {
                 $mail->addAddress($email, $name);
                 $mail->Subject = "Verify your email address";
-                $mail->Body = "Thank you for registering for Timetable Notifications. <br> Open this link to verify your email address: "."<a href=\"http://".$_SERVER['SERVER_NAME']."/activate.php?id=$string&email=$email\">Verify</a>";
+
+                $mail->Body = "Hi $name,<br>Thank you for registering for Timetable Notifications. <br> Open this link to verify your email address: "."<a href=\"http://".$_SERVER['SERVER_NAME']."/activate.php?id=$string&email=$email\">Verify</a>";
                 if ($mail->send()) {
                     $message .= "Please check your email inbox for verfication email";
                     alertUser("Registered Successfully, Please check your email for verification email");
