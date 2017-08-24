@@ -115,6 +115,7 @@ if ($result->num_rows > 0) {
                 die("Something went wrong");
             }
         }
+        unset($entries);
     }
 }
 
