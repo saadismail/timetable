@@ -6,7 +6,7 @@ require dirname(__FILE__) . '/include/email.php';
 
 date_default_timezone_set('Asia/Karachi');
 $julianday = gregoriantojd(date('m'),date('d'),date('Y'));
-$day_of_week = jddayofweek($julianday+2);
+$day_of_week = jddayofweek($julianday);
 
 // Stop execution if next day is weekend or invalid $day_of_week
 if ($day_of_week < 0 || $day_of_week > 4) die();
