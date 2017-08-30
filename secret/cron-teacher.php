@@ -1,8 +1,8 @@
 <?php
 
-require dirname(__FILE__) . '/include/db.php';
-require dirname(__FILE__) . "/include/functions.php";
-require dirname(__FILE__) . '/include/email.php';
+require dirname(__FILE__) . '/../include/db.php';
+require dirname(__FILE__) . "/../include/functions.php";
+require dirname(__FILE__) . '/../include/email.php';
 
 date_default_timezone_set('Asia/Karachi');
 $julianday = gregoriantojd(date('m'),date('d'),date('Y'));
@@ -12,7 +12,7 @@ $day_of_week = jddayofweek($julianday-4);
 if ($day_of_week < 0 || $day_of_week > 4) die();
 
 /** PHPExcel_IOFactory */
-require_once dirname(__FILE__) . '/Classes/PHPExcel/IOFactory.php';
+require_once dirname(__FILE__) . '/../Classes/PHPExcel/IOFactory.php';
 
 $cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
 $cacheSettings = array( ' memoryCacheSize ' => '8MB');
@@ -22,9 +22,11 @@ $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objReader->setReadDataOnly(true);
 try {
     if(file_exists("include/BSCS-modified.xlsx")) {
-        $objPHPExcel = $objReader->load(dirname(__FILE__) . "/include/BSCS-modified.xlsx");
+        $objPHPExcel = $objReader->load(dirname(__FILE__) . 
+"/../include/BSCS-modified.xlsx");
     } else {
-        $objPHPExcel = $objReader->load(dirname(__FILE__) . "/include/BSCS.xlsx");
+        $objPHPExcel = $objReader->load(dirname(__FILE__) . 
+"/../include/BSCS.xlsx");
     }
 } catch (Exception $e) {
     echo $e->getMessage();
