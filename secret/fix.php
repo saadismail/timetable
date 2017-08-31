@@ -10,7 +10,7 @@ $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objReader->setReadDataOnly(true);
 
 try {
-    $objPHPExcel = $objReader->load("../include/BSCS.xlsx");
+    $objPHPExcel = $objReader->load(dirname(__FILE__) . "/../include/BSCS.xlsx");
 } catch (Exception $e) {
     echo $e->getMessage();
     die();

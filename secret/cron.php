@@ -21,13 +21,7 @@ PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objReader->setReadDataOnly(true);
 try {
-    if(file_exists("include/BSCS-modified.xlsx")) {
-        $objPHPExcel = $objReader->load(dirname(__FILE__) . 
-"/../include/BSCS-modified.xlsx");
-    } else {
-        $objPHPExcel = $objReader->load(dirname(__FILE__) . 
-"/../include/BSCS.xlsx");
-    }
+    $objPHPExcel = $objReader->load(dirname(__FILE__) . "/../include/BSCS-modified.xlsx");
 } catch (Exception $e) {
     echo $e->getMessage();
     die();
@@ -105,7 +99,7 @@ if ($result->num_rows > 0) {
         }
 
         $message .= "</table>";
-        $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK<b>';
+        $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK</b>';
         $message .= "</body></html>";
         echo $message;
 
