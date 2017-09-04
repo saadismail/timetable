@@ -40,11 +40,16 @@ require dirname(__FILE__) . '/include/email.php';
             <input type="email" class="form-control" id="email" name="email" required placeholder="Enter email (k1#####@nu.edu.pk)" pattern="k1[0-9]{5}@nu.edu.pk$">
         </div>
     </div>
+
+    <br>Enter each subjects' main section like if your class has entry in excel sheet like: <b>CP Lab-C=(D,E,F) (C1+C2)</b> then you should enter <b>C</b> in the section field of Computer Programming.<br>
+    <b>Still confused?</b> Have a look at <a href="http://timetable.host/include/BSCS-modified.xlsx">the modified version of timetable</a> that I use.<br><br>
+
     <table class="table">
         <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Short</th>
             <th>Code</th>
             <th>Section</th>
         </tr>
