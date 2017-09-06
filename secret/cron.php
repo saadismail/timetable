@@ -29,7 +29,7 @@ try {
 
 $worksheet = $objPHPExcel->setActiveSheetIndex(($day_of_week));
 
-$sql = "SELECT `active`, `name`, `email`, `subjects`, `sections` FROM students";
+$sql = "SELECT `id`, `active`, `name`, `email`, `subjects`, `sections` FROM students";
 $result = $conn->query($sql);
 $current = 0;
 if ($result->num_rows > 0) {
@@ -38,6 +38,8 @@ if ($result->num_rows > 0) {
         if ($row['active'] == 0) {
             continue;
         }
+
+        $id = $row['id'];
         $email = $row['email'];
         $name = $row['name'];
 
