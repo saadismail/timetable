@@ -16,6 +16,12 @@ try {
     die();
 }
 
+// Remove first un-necessary sheets from modified file, only 5 sheets should be there at the end.
+while ($objPHPExcel->getSheetCount() > 5) {
+    $objPHPExcel->removeSheetByIndex(0);
+}
+
+// Go into every sheet, remove "(", ")" & the content in between to avoid ambiguity in the section checks
 for ($i=0; $i<5; $i++) {
     $worksheet = $objPHPExcel->setActiveSheetIndex(($i));
     foreach ($worksheet->getColumnIterator() as $column) {
@@ -33,6 +39,5 @@ for ($i=0; $i<5; $i++) {
 
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 $objWriter->save(dirname(__FILE__)."/../include/BSCS-modified.xlsx");
-
 
 ?>
