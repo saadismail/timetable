@@ -1,7 +1,7 @@
 <?php
 
 // Current version of timetable being used
-$version="V1.5"
+$version="V1.5";
 
 // Don't send emails if development mode is on
 $developmentMode = False;
@@ -27,10 +27,6 @@ function cmp($a, $b)
 {
     $timing1 = intval(current(explode('-', $a['timing'])));
     $timing2 = intval(current(explode('-', $b['timing'])));
-    // $timing1 = explode('-', $a['timing']);
-    // $timing1 = intval($timing1[0]);
-    // $timing2 = explode('-', $b['timing']);
-    // $timing2 = intval($timing2[0]);
     if ($timing1 >= 8 && $timing2 >= 8 || $timing1 <= 3 && $timing2 <= 3) {
         return ($timing1 < $timing2) ? -1 : 1;
     }

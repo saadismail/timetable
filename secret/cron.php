@@ -50,6 +50,7 @@ if ($result->num_rows > 0) {
         $sections = explode(',', $sections);
 
         $message = '<html><body>';
+        $message .= "Hi ".$name.",<br><br>";
         $message .= 'Below is the schedule of your classes tomorrow: <br><br>';
         $message .= '<table rules="all" style="border-color: #666;" cellpadding="10" border="6" >';
         $message .= "<tr style='background: #eee;'><td>Subject</td><td>Timing</td><td>Room</td></tr>";
@@ -99,8 +100,8 @@ if ($result->num_rows > 0) {
                 $message .= "<tr><td><strong>".$entries[$i]['subject']."</strong> </td><td>".$entries[$i]['timing']."</td><td>".$entries[$i]['room']."</td></tr>";
             }
         }
-
         $message .= "</table>";
+        $message .= "<br>Version of timetable being used: ".$version."<br>";
         $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK</b>';
         $message .= "</body></html>";
         echo $message;
