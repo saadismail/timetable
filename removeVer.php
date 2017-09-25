@@ -25,6 +25,8 @@ if ($result->num_rows > 0) {
             $sql = "DELETE FROM `students` WHERE `students`.`id` = '$stid'";
             if ($conn->query($sql) == TRUE) {
                 alertUser("Successfully Removed");
+                $sql = "DELETE FROM remove_vercode WHERE `studentID` = '$stid'";
+                $conn->query($sql);
             } else {
                 alertUser("Remove failed");
             }

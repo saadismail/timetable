@@ -5,9 +5,18 @@ require dirname(__FILE__) . "/../include/functions.php";
 require dirname(__FILE__) . '/../include/email.php';
 
 date_default_timezone_set('Asia/Karachi');
-$julianday = gregoriantojd(date('m'),date('d'),date('Y'));
-$day_of_week = jddayofweek($julianday-1);
 
+// If current time is less than 4:00 PM then send email of current day else of the next day
+if (date('H') < 16) {
+    $julianday = (gregoriantojd(date('m'),date('d'),date('Y')));
+    $dayAndDate = date('l\, jS F Y');
+} else {
+    $julianday = (gregoriantojd(date('m'),date('d'),date('Y'))) + 1;
+    $dayAndDate = date('l\, jS F Y', strtotime(' +1 day'));
+}
+
+
+$day_of_week = jddayofweek($julianday);
 // Stop execution if next day is weekend or invalid $day_of_week
 if ($day_of_week < 0 || $day_of_week > 4) die();
 
@@ -27,17 +36,19 @@ try {
     die();
 }
 
-$worksheet = $objPHPExcel->setActiveSheetIndex(($day_of_week));
+// $day_of_week-1 as sheet starts from 0 while $day_of_week has 1 for Monday
+$worksheet = $objPHPExcel->setActiveSheetIndex(($day_of_week-1));
 
 $sql = "SELECT `id`, `active`, `name`, `email`, `subjects`, `sections` FROM students";
 $result = $conn->query($sql);
-$current = 0;
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         // Skip if the user has not verified his email address yet
         if ($row['active'] == 0) {
             continue;
         }
+
+        $current = 0;
 
         $id = $row['id'];
         $email = $row['email'];
@@ -51,7 +62,7 @@ if ($result->num_rows > 0) {
 
         $message = '<html><body>';
         $message .= "Hi ".$name.",<br><br>";
-        $message .= 'Below is the schedule of your classes tomorrow: <br><br>';
+        $message .= 'Below is the schedule of your classes for '.$dayAndDate.': <br><br>';
         $message .= '<table rules="all" style="border-color: #666;" cellpadding="10" border="6" >';
         $message .= "<tr style='background: #eee;'><td>Subject</td><td>Timing</td><td>Room</td></tr>";
 
@@ -110,7 +121,7 @@ if ($result->num_rows > 0) {
         if (!$developmentMode && !empty($entries)) {
             $mail->clearAddresses();
             $mail->addAddress($email, $name);
-            $mail->Subject = "Tomorrow's classes";
+            $mail->Subject = "TimeTable Notifier";
             $mail->Body = $message;
 
             if (! $mail->send()) {

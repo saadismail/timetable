@@ -21,7 +21,7 @@ PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objReader->setReadDataOnly(true);
 try {
-    if(file_exists("include/BSCS-modified.xlsx")) {
+    if(file_exists("../include/BSCS-modified.xlsx")) {
         $objPHPExcel = $objReader->load(dirname(__FILE__) . 
 "/../include/BSCS-modified.xlsx");
     } else {

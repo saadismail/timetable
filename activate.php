@@ -24,6 +24,8 @@ if ($result->num_rows > 0) {
             $sql = "UPDATE students SET active=1 WHERE `id` = '$stid'";
             if ($conn->query($sql) == TRUE) {
                 echo "Successfully activated";
+                $sql = "DELETE FROM vercode WHERE `studentID` = '$stid'";
+                $conn->query($sql);
             } else {
                 die("Activation Failed");
             }
