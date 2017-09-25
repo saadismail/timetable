@@ -1,10 +1,10 @@
 <?php
 
 // Current version of timetable being used
-$version="V1.5"
+$version="";
 
 // Don't send emails if development mode is on
-$developmentMode = False;
+$developmentMode = True;
 
 // Returns a random string of length = $length
 function generateRandomString($length = 10) {
