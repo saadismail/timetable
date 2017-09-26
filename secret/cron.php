@@ -75,7 +75,7 @@ if ($result->num_rows > 0) {
                 $cellIterator = $column->getCellIterator();
                 foreach ($cellIterator as $cell) {
                     if (!is_null($cell) && !is_null($cell->getCalculatedValue())) {
-                        if (strpos($cell->getCalculatedValue(), $short) !== false) {
+                        if (strpos($cell->getCalculatedValue(), $short) !== false && strpos(ltrim($cell->getCalculatedValue()), $short) === 0) {
                             // Dont show labs for course classes
                             if (strpos($short, "Lab") == false && strpos($cell->getCalculatedValue(), "Lab") == false || strpos($short, "Lab") !== false && strpos($cell->getCalculatedValue(), "Lab") !== false) {
                                 if (strripos($cell->getCalculatedValue(), '+' . $section) !== false || strripos($cell->getCalculatedValue(), ' ' . $section . ' ') !== false  || strripos($cell->getCalculatedValue(), ' ' . $section . '(') !== false || strripos($cell->getCalculatedValue(), '-' . $section) !== false || strripos($cell->getCalculatedValue(), ',' . $section) !== false || strripos($cell->getCalculatedValue(), $section . ',') !== false) {
