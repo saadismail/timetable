@@ -62,7 +62,7 @@ if ($result->num_rows > 0) {
 
         $message = '<html><body>';
         $message .= "Hi ".$name.",<br><br>";
-        $message .= 'Below is the schedule of your classes for '.$dayAndDate.': <br><br>';
+        $message .= 'Below is the schedule of your classes on '.$dayAndDate.': <br><br>';
         $message .= '<table rules="all" style="border-color: #666;" cellpadding="10" border="6" >';
         $message .= "<tr style='background: #eee;'><td>Subject</td><td>Timing</td><td>Room</td></tr>";
 

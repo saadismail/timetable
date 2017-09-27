@@ -6,7 +6,7 @@ require dirname(__FILE__) . '/../include/email.php';
 
 date_default_timezone_set('Asia/Karachi');
 $julianday = gregoriantojd(date('m'),date('d'),date('Y'));
-$day_of_week = jddayofweek($julianday-4);
+$day_of_week = jddayofweek($julianday-1);
 
 // Stop execution if next day is weekend or invalid $day_of_week
 if ($day_of_week < 0 || $day_of_week > 4) die();
@@ -46,7 +46,7 @@ foreach ($worksheet->getColumnIterator() as $column) {
     $cellIterator = $column->getCellIterator();
     foreach ($cellIterator as $cell) {
         if (!is_null($cell) && !is_null($cell->getCalculatedValue())) {
-            if (strpos($cell->getCalculatedValue(), "Faqiha") !== false) {
+            if (strpos($cell->getCalculatedValue(), "Anum") !== false) {
                 $colindex = substr($cell->getCoordinate(), 0, 1);
                 $rowindex = substr($cell->getCoordinate(), 1, 2);
                 $timing = $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue();
@@ -76,16 +76,16 @@ $message .= "</body></html>";
 echo $message;
 
 // Only send emails if development mode (in functions.php) is false
-if (!$developmentMode && !empty($entries)) {
-    $mail->clearAddresses();
-    $mail->addAddress($email, $name);
-    $mail->Subject = "Tomorrow's classes";
-    $mail->Body = $message;
+// if (!$developmentMode && !empty($entries)) {
+//     $mail->clearAddresses();
+//     $mail->addAddress($email, $name);
+//     $mail->Subject = "Tomorrow's classes";
+//     $mail->Body = $message;
 
-    if (! $mail->send()) {
-        die("Something went wrong");
-    }
-}
+//     if (! $mail->send()) {
+//         die("Something went wrong");
+//     }
+// }
 unset($entries);
 
 $conn->close();

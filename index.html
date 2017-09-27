@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>TimeTable Notifier</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="include/custom.css">
 </head>
+
 <body>
-<!-- <br> -->
 
 <div class="container">
     <h1 style="text-align: center; margin-top: 40px;">TimeTable Notifier</h1>
@@ -16,10 +17,48 @@
         <a href="remove.php"><div class="col-sm-4 text-center"><button type="button" class="btn btn-primary btn-lg">Remove</button></div></a>
         <a href="help.html"><div class="col-sm-4 text-center"><button type="button" class="btn btn-primary btn-lg">Help</button></div></a>
     </div>
+    <br>
+    <div class="row"><div class="col-sm-12 text-center"><button type="button" onClick="show()" class="btn btn-primary btn-lg">Issue/Feedback</button></div></div>
+        
+    <form id="ajax-contact" method="post" action="include/feedback.php" class="form-horizontal" style="display:none;">
+    <br>
+    <div id="form-messages"></div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="name">Name:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" required placeholder="Enter name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Email:</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" name="email" required placeholder="Enter email (must be of @nu.edu.pk)" pattern="[\w.%+-]+@nu\.edu\.pk">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="feedback">Issue/Feedback:</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" rows="5" id="message" name="message"></textarea>
+        </div>
+    </div>
+        <div class="form-group">
+            <div class="text-center">
+                <div class="g-recaptcha" data-sitekey="6LcPUjIUAAAAAEXaFcTIOAzvghTo8TpbTFsxA2tv"></div>
+            </div>
+    </div>
+    
+    <div class="form-group">
+            <div class="text-center">
+                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+            </div>
+    </div>
+    </form>
 
     <p style="text-align: center; margin-top: 30px;"><b>This is still in beta mode so you should not be relying only on it.</b></p>
     <p style="text-align: center; margin-top: -10px;">Feel free to inform me at k164060@nu.edu.pk in case of any issues or if you have any feedback.</p>
 </div>
-
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="include/app.js"></script>
 </body>
 </html>
