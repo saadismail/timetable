@@ -15,10 +15,9 @@ if (date('H') < 16) {
     $dayAndDate = date('l\, jS F Y', strtotime(' +1 day'));
 }
 
-
 $day_of_week = jddayofweek($julianday);
 // Stop execution if next day is weekend or invalid $day_of_week
-if ($day_of_week < 0 || $day_of_week > 4) die();
+if ($day_of_week < 1 || $day_of_week > 5) die();
 
 /** PHPExcel_IOFactory */
 require_once dirname(__FILE__) . '/../Classes/PHPExcel/IOFactory.php';

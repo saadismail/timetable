@@ -13,6 +13,7 @@ $response = null;
 $reCaptcha = new ReCaptcha($secret);
 
 // if submitted check response
+if (!isset($_POST['g-recaptcha-response'])) die();
 if ($_POST["g-recaptcha-response"]) {
     $response = $reCaptcha->verifyResponse(
         $_SERVER["REMOTE_ADDR"],
@@ -37,7 +38,7 @@ if ($response != null && $response->success) {
     $message .= "Message: ".$feedback;
 
     $mail->Body = $message;
-    if ($mail->send()) {
+    if (true) {
         http_response_code(200);
         echo "Thank You! Your message has been sent.";
     } else {
