@@ -40,6 +40,12 @@ require dirname(__FILE__) . '/include/email.php';
         if (!isset($_POST['email'])) {
             die("Stop");
         }
+        
+        if(!preg_match("/^k1[0-9]{5}@nu\.edu\.pk$/", $_POST['email'])) {
+            alertUser("You must provide a Karachi student's nu.edu.pk email address to register.");
+            die();
+        }
+
         $email = $_POST['email'];
 
         $sql = "SELECT id FROM students WHERE `email` = '$email'";

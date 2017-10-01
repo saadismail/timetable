@@ -3,6 +3,14 @@ require "functions.php";
 require "email.php";
 
 if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['message']) && !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message'])) {
+
+    if (!preg_match("/^[a-zA-Z\s]*$/", $_POST['name'])) {
+        die();
+    }
+
+    if(!preg_match("/@nu\.edu\.pk$/", $_POST['email'])) {
+        die();
+    }
     if (!isset($_POST['g-recaptcha-response']) || empty($_POST['g-recaptcha-response']) ) {
         http_response_code(400);
         echo "Complete the reCAPTCHA first.";

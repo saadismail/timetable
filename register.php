@@ -90,8 +90,20 @@ require dirname(__FILE__) . '/include/email.php';
         }
 
         if (!preg_match("/^[a-zA-Z\s]*$/", $_POST['name'])) {
-            die("Invalid name, should only contain letters");
+            alertUser("Invalid name, should only contain letters");
+            die();
         }
+
+        if (!preg_match('/^[0-9]{4}$/', $_POST['batch'])) {
+            alertUser("Batch should be exactly 4 digits i.e 2016");
+            die();
+        }
+
+        if(!preg_match("/^k1[0-9]{5}@nu\.edu\.pk$/", $_POST['email'])) {
+            alertUser("You must provide a Karachi student's nu.edu.pk email address to register.");
+            die();
+        }
+
         $name = $_POST['name'];
         $batch = $_POST['batch'];
         $email = $_POST['email'];
