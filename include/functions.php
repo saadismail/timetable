@@ -6,6 +6,10 @@ $version="V1.5";
 // Don't send emails if development mode is on
 $developmentMode = True;
 
+// Google ReCaptcha
+$recaptchaSiteKey = "6LcPUjIUAAAAAEXaFcTIOAzvghTo8TpbTFsxA2tv";
+$recaptchaSecretKey = "6LcPUjIUAAAAADzatC4WoqQVnZbRLULoJ9oJRe9f";
+
 // Returns a random string of length = $length
 function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

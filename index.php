@@ -1,3 +1,9 @@
+<?php
+
+require "include/functions.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +28,7 @@
         
     <form id="ajax-contact" method="post" action="include/feedback.php" class="form-horizontal" style="display:none;">
     <br>
-    <div id="form-messages"></div>
+    <div style="font-weight: bold; text-align: center" id="form-messages"></div>
     <div class="form-group">
         <label class="control-label col-sm-2" for="name">Name:</label>
         <div class="col-sm-10">
@@ -38,12 +44,12 @@
     <div class="form-group">
         <label class="control-label col-sm-2" for="feedback">Issue/Feedback:</label>
         <div class="col-sm-10">
-            <textarea class="form-control" rows="5" id="message" name="message"></textarea>
+            <textarea class="form-control" rows="5" id="message" name="message" required placeholder="Any issue you noticed or any feedback that can make it better"></textarea>
         </div>
     </div>
         <div class="form-group">
             <div class="text-center">
-                <div class="g-recaptcha" data-sitekey="6LcPUjIUAAAAAEXaFcTIOAzvghTo8TpbTFsxA2tv"></div>
+                <?php echo "<div class=\"g-recaptcha\" data-sitekey=\"".$recaptchaSiteKey."\"></div>";?> 
             </div>
     </div>
     
