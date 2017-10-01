@@ -47,10 +47,10 @@ require "include/functions.php";
             <textarea class="form-control" rows="5" id="message" name="message" required placeholder="Any issue you noticed or any feedback that can make it better"></textarea>
         </div>
     </div>
-        <div class="form-group">
-            <div class="text-center">
-                <?php echo "<div class=\"g-recaptcha\" data-sitekey=\"".$recaptchaSiteKey."\"></div>";?> 
-            </div>
+    <div class="form-group">
+        <div class="text-center">
+            <?php echo "<div class=\"g-recaptcha\" data-sitekey=\"".$recaptchaSiteKey."\"></div>";?> 
+        </div>
     </div>
     
     <div class="form-group">
@@ -63,8 +63,8 @@ require "include/functions.php";
     <p style="text-align: center; margin-top: 30px;"><b>This is still in beta mode so you should not be relying only on it.</b></p>
     <p style="text-align: center; margin-top: -10px;">Feel free to inform me at k164060@nu.edu.pk in case of any issues or if you have any feedback.</p>
 </div>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="include/app.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="include/app.js"></script>
 </body>
 </html>

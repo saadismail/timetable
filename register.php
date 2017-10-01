@@ -76,6 +76,13 @@ require dirname(__FILE__) . '/include/email.php';
     ?>
             </tbody>
         </table>
+
+        <div class="form-group">
+            <div class="text-center pull-right">
+                <?php echo "<div class=\"g-recaptcha\" data-sitekey=\"".$recaptchaSiteKey."\"></div>";?> 
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="pull-right">
                 <button type="submit" name="submit" class="btn btn-primary">Register</button>
@@ -101,6 +108,18 @@ require dirname(__FILE__) . '/include/email.php';
 
         if(!preg_match("/^k1[0-9]{5}@nu\.edu\.pk$/", $_POST['email'])) {
             alertUser("You must provide a Karachi student's nu.edu.pk email address to register.");
+            die();
+        }
+
+        if (!isset($_POST['g-recaptcha-response']) || empty($_POST['g-recaptcha-response'])) {
+            alertUser("You have missed the captcha in the bottom on the page.");
+            die();
+        }
+
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$recaptchaSecretKey.'&response='.$_POST['g-recaptcha-response']);
+        $responseData = json_decode($verifyResponse);
+        if (!$responseData->success) {
+            alertUser("Captcha verification failed.");
             die();
         }
 
@@ -179,5 +198,7 @@ require dirname(__FILE__) . '/include/email.php';
     }
 ?>
 </div>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
 </html>

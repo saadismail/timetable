@@ -28,11 +28,18 @@ require dirname(__FILE__) . '/include/email.php';
             <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your registered email (k1#####@nu.edu.pk)" pattern="k1[0-9]{5}@nu.edu.pk$">
         </div>
     </div>
-        <div class="form-group">
-            <div class="pull-right">
-                <button type="submit" name="submit" class="btn btn-primary">Remove!</button>
-            </div>
+
+    <div class="form-group">
+        <div class="text-center pull-right">
+            <?php echo "<div class=\"g-recaptcha\" data-sitekey=\"".$recaptchaSiteKey."\"></div>";?> 
         </div>
+    </div>
+
+    <div class="form-group">
+        <div class="pull-right">
+            <button type="submit" name="submit" class="btn btn-primary">Remove!</button>
+        </div>
+    </div>
     </form>
 
 <?php
@@ -46,6 +53,19 @@ require dirname(__FILE__) . '/include/email.php';
             die();
         }
 
+        if (!isset($_POST['g-recaptcha-response']) || empty($_POST['g-recaptcha-response'])) {
+            alertUser("You have missed the captcha.");
+            die();
+        }
+
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$recaptchaSecretKey.'&response='.$_POST['g-recaptcha-response']);
+        $responseData = json_decode($verifyResponse);
+        if (!$responseData->success) {
+            alertUser("Captcha verification failed.");
+            die();
+        }
+
+
         $email = $_POST['email'];
 
         $sql = "SELECT id FROM students WHERE `email` = '$email'";
@@ -53,6 +73,14 @@ require dirname(__FILE__) . '/include/email.php';
         if ($result->num_rows > 0) {
         	$row = $result->fetch_assoc();
         	$id = $row['id'];
+
+            $sql = "SELECT id FROM remove_vercode WHERE `studentID` = '$id'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                alertUser("You already have a removal request pending. Use the old email sent to remove your record.");
+                die();
+            }
+
         	$string = generateRandomString(20);
         	$sql = "INSERT INTO `remove_vercode` (`id`, `studentID`, `code`) VALUES (NULL, '$id', '$string')";
             if ($conn->query($sql) != TRUE) {
@@ -75,5 +103,8 @@ require dirname(__FILE__) . '/include/email.php';
     }
 ?>
 </div>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 </body>
 </html>
