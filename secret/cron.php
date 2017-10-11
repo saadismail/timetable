@@ -15,7 +15,7 @@ if (date('H') < 16) {
     $dayAndDate = date('l\, jS F Y', strtotime(' +1 day'));
 }
 
-$day_of_week = jddayofweek($julianday);
+$day_of_week = jddayofweek($julianday+1);
 // Stop execution if next day is weekend or invalid $day_of_week
 if ($day_of_week < 1 || $day_of_week > 5) die();
 
@@ -34,6 +34,8 @@ try {
     echo $e->getMessage();
     die();
 }
+
+$tclasses=0;
 
 // $day_of_week-1 as sheet starts from 0 while $day_of_week has 1 for Monday
 $worksheet = $objPHPExcel->setActiveSheetIndex(($day_of_week-1));
@@ -76,8 +78,7 @@ if ($result->num_rows > 0) {
                     if (!is_null($cell) && !is_null($cell->getCalculatedValue())) {
                         if (strpos($cell->getCalculatedValue(), $short) !== false && strpos(ltrim($cell->getCalculatedValue()), $short) === 0) {
                             // Dont show labs for course classes
-                            if (strpos($short, "Lab") == false && strpos($cell->getCalculatedValue(), "Lab") == false || strpos($short, "Lab") !== false && strpos($cell->getCalculatedValue(), "Lab") !== false) {
-                                if (strripos($cell->getCalculatedValue(), '+' . $section) !== false || strripos($cell->getCalculatedValue(), ' ' . $section . ' ') !== false  || strripos($cell->getCalculatedValue(), ' ' . $section . '(') !== false || strripos($cell->getCalculatedValue(), '-' . $section) !== false || strripos($cell->getCalculatedValue(), ',' . $section) !== false || strripos($cell->getCalculatedValue(), $section . ',') !== false) {
+                            if (strpos($short, "Lab") == false && strpos($cell->getCalculatedValue(), "Lab") == false || strpos($short, "Lab") !== false && strpos($cell->getCalculatedValue(), "Lab") !== false) {if (strripos($cell->getCalculatedValue(), ' ' . $section . ' ') !== false  || strripos($cell->getCalculatedValue(), '-' . $section) !== false) {
                                     $colindex = substr($cell->getCoordinate(), 0, 1);
                                     $rowindex = substr($cell->getCoordinate(), 1, 2);
                                     $timing = $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue();
@@ -94,6 +95,7 @@ if ($result->num_rows > 0) {
                                     $entries[$current]['timing'] = $timing;
                                     $entries[$current]['room'] = $room;
                                     $current++;
+                                    $tclasses++;
                                 }
                             }
                         }
@@ -104,7 +106,7 @@ if ($result->num_rows > 0) {
 
         // Only go here if $entries is not empty
         if (!empty($entries)) {
-            // Sorts $entries with respect to timing
+            // Sorts $entries with respect to timing, cmp is a custom function in functions.php
             usort($entries, "cmp");
             for ($i=0; $i<sizeof($entries); $i++){
                 $message .= "<tr><td><strong>".$entries[$i]['subject']."</strong> </td><td>".$entries[$i]['timing']."</td><td>".$entries[$i]['room']."</td></tr>";
@@ -114,7 +116,7 @@ if ($result->num_rows > 0) {
         $message .= "<br>Version of timetable being used: ".$version."<br>";
         $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK</b>';
         $message .= "</body></html>";
-        echo $message;
+//        echo $message;
 
         // Only send emails if development mode (in functions.php) is false
         if (!$developmentMode && !empty($entries)) {
@@ -128,10 +130,11 @@ if ($result->num_rows > 0) {
             }
         }
         unset($entries);
-        echo "<br> <br>";
+//        echo "<br> <br>";
     }
 }
 
 $conn->close();
 
+echo $tclasses;
 ?>
