@@ -15,7 +15,7 @@ if (date('H') < 16) {
     $dayAndDate = date('l\, jS F Y', strtotime(' +1 day'));
 }
 
-$day_of_week = jddayofweek($julianday+1);
+$day_of_week = jddayofweek($julianday);
 // Stop execution if next day is weekend or invalid $day_of_week
 if ($day_of_week < 1 || $day_of_week > 5) die();
 
@@ -34,8 +34,6 @@ try {
     echo $e->getMessage();
     die();
 }
-
-$tclasses=0;
 
 // $day_of_week-1 as sheet starts from 0 while $day_of_week has 1 for Monday
 $worksheet = $objPHPExcel->setActiveSheetIndex(($day_of_week-1));
@@ -95,7 +93,6 @@ if ($result->num_rows > 0) {
                                     $entries[$current]['timing'] = $timing;
                                     $entries[$current]['room'] = $room;
                                     $current++;
-                                    $tclasses++;
                                 }
                             }
                         }
@@ -116,7 +113,7 @@ if ($result->num_rows > 0) {
         $message .= "<br>Version of timetable being used: ".$version."<br>";
         $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK</b>';
         $message .= "</body></html>";
-//        echo $message;
+        echo $message;
 
         // Only send emails if development mode (in functions.php) is false
         if (!$developmentMode && !empty($entries)) {
@@ -130,11 +127,10 @@ if ($result->num_rows > 0) {
             }
         }
         unset($entries);
-//        echo "<br> <br>";
+        echo "<br> <br>";
     }
 }
 
 $conn->close();
 
-echo $tclasses;
 ?>
