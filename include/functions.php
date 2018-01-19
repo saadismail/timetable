@@ -37,4 +37,18 @@ function cmp($a, $b)
     return ($timing1 < $timing2) ? 1 : -1;
 }
 
+function encrypt( $string ) {
+    $secret_key = 'MwREkEFS1L98D2sapTfPsHpMwAZT1wSm';
+    $secret_iv = 'WgutdoxidsxcZz4DKGA1tMT1Z77566Ec';
+
+    return openssl_encrypt($string, "AES-256-CBC", $secret_key, 0, $secret_iv);
+}
+
+function decrypt( $string ) {
+    $secret_key = 'MwREkEFS1L98D2sapTfPsHpMwAZT1wSm';
+    $secret_iv = 'WgutdoxidsxcZz4DKGA1tMT1Z77566Ec';
+
+    return openssl_decrypt($string, "AES-256-CBC", $secret_key, 0, $secret_iv);
+}
+
 ?>
