@@ -41,6 +41,9 @@ require dirname(__FILE__) . '/include/email.php';
         </div>
     </div>
 
+    <div class="form-group">
+        <br><b>NOTE:</b> You should put sections as per NEON for all the subjects. Those can be different for different subjects.<br>
+    </div>
     <table class="table">
         <thead>
         <tr>
@@ -75,13 +78,13 @@ require dirname(__FILE__) . '/include/email.php';
 
         <div class="form-group">
             <div class="text-center pull-right">
-                <?php echo "<div class=\"g-recaptcha\" data-callback=\"recaptchaCallback\" data-sitekey=\"".$recaptchaSiteKey."\"></div>";?> 
+                <?php echo "<div class=\"g-recaptcha\" data-sitekey=\"".$recaptchaSiteKey."\"></div>";?> 
             </div>
         </div>
 
         <div class="form-group">
             <div class="pull-right">
-                <button type="submit" name="submit" class="btn btn-primary" disabled>Register</button>
+                <button id="submit" type="submit" name="submit" class="btn btn-primary">Register</button>
             </div>
         </div>
     </form>
@@ -197,4 +200,5 @@ require dirname(__FILE__) . '/include/email.php';
 
 <script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
+
 </html>
