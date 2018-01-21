@@ -1,6 +1,6 @@
 import webbrowser, bs4, re, requests
 
-res = requests.get('https://sites.google.com/a/nu.edu.pk/info-cskhi/bscs-time-table-fall-17') # Get the whole page
+res = requests.get('https://sites.google.com/a/nu.edu.pk/info-cskhi/home/bscs-time-table-spring-2018') # Get the whole page
 res.raise_for_status() # Raise the exception if troubles in accessing the URL
 
 soup = bs4.BeautifulSoup(res.text, "html.parser") # Load the page in BS4

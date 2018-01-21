@@ -41,10 +41,6 @@ require dirname(__FILE__) . '/include/email.php';
         </div>
     </div>
 
-    <br>Enter each subjects' main section like if your class has entry in excel sheet like: <b>CP Lab-C=(D,E,F) (C1+C2)</b> then you should enter <b>C</b> in the section field of Computer Programming.<br>
-    If section is divided into two for a particular course like English Language (SS102) is dividied into E1 & E2 for section E then use E1/E2.<br>
-    <b>Still confused?</b> Have a look at <a href="http://timetable.host/include/BSCS-modified.xlsx">the modified version of timetable</a> that I use.<br><br>
-
     <table class="table">
         <thead>
         <tr>
@@ -79,13 +75,13 @@ require dirname(__FILE__) . '/include/email.php';
 
         <div class="form-group">
             <div class="text-center pull-right">
-                <?php echo "<div class=\"g-recaptcha\" data-sitekey=\"".$recaptchaSiteKey."\"></div>";?> 
+                <?php echo "<div class=\"g-recaptcha\" data-callback=\"recaptchaCallback\" data-sitekey=\"".$recaptchaSiteKey."\"></div>";?> 
             </div>
         </div>
 
         <div class="form-group">
             <div class="pull-right">
-                <button type="submit" name="submit" class="btn btn-primary">Register</button>
+                <button type="submit" name="submit" class="btn btn-primary" disabled>Register</button>
             </div>
         </div>
     </form>
