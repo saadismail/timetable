@@ -68,7 +68,7 @@ require dirname(__FILE__) . '/include/email.php';
             echo "<td>" . $row['name'] . "</td>";
             echo "<td>" . $row['short'] . "</td>";
             echo "<td>" . $row['code'] . "</td>";
-            echo "<td><input type='text' class=\"form-control\" placeholder='Enter section (A-I || A-I# || Gr#)' name=\"sections[]\"/>";
+            echo "<td><input type='text' class=\"form-control\" placeholder='Enter section (A || A# || Gr#)' name=\"sections[]\"/>";
             echo "</tr>";
         }
     }
@@ -133,8 +133,10 @@ require dirname(__FILE__) . '/include/email.php';
             $sectionstmp = $_POST['sections'];
             for ($i = 0; $i < sizeof($sectionstmp); $i++) {
                 if ($sectionstmp[$i]) {
+                    $sectionstmp[$i] = removeAllDashes($sectionstmp[$i]);
                     if (strlen($sectionstmp[$i]) > 3 || !preg_match("/^[a-i]$/i", $sectionstmp[$i]) && !preg_match("/^[a-i][1-2]{1}$/i", $sectionstmp[$i]) && !preg_match("/^GR[1-9]$/i", $sectionstmp[$i])) {
-                        die('Invalid section');
+                        alertUser('Invalid section');
+                        die();
                     }
                     if(strlen($sectionstmp[$i]) == 1) {
                         $sectionstmp[$i] = strtoupper($sectionstmp[$i]);

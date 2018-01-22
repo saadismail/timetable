@@ -4,7 +4,7 @@
 $version="V1.0";
 
 // Don't send emails if development mode is on
-$developmentMode = True;
+$developmentMode = False;
 
 // Google ReCaptcha
 $recaptchaSiteKey = "6LcPUjIUAAAAAEXaFcTIOAzvghTo8TpbTFsxA2tv";
@@ -19,6 +19,10 @@ function generateRandomString($length = 10) {
         $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
     return $randomString;
+}
+
+function removeAllDashes($string) {
+    return str_replace("-", "", $string);
 }
 
 // Displays $message in javascript alert box
