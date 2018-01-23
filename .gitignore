@@ -1,3 +1,5 @@
 custom/.idea/
 .idea/
 sendgrid.env
+composer.*
+.git
