@@ -21,6 +21,21 @@ function generateRandomString($length = 10) {
     return $randomString;
 }
 
+function foundClass ($subject, $short, $section) {
+    if ((strpos($subject, $short . ' ') !== false || strpos($subject, $short . '-') !== false) && strpos(ltrim($subject), $short) === 0) {
+
+        // Dont show labs for course classes
+        if (strpos($short, "Lab") == false && strpos($subject, "Lab") == false || strpos($short, "Lab") !== false && strpos($subject, "Lab") !== false) {
+
+            if (strpos($subject, ' ' . $section . ' ') !== false  || strpos($subject, '-' . $section) !== false || strpos($subject, ' ' . $section . '+') !== false  || strpos($subject, '+' . $section . ' ') !== false ) {
+
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 function removeAllDashes($string) {
     return str_replace("-", "", $string);
 }

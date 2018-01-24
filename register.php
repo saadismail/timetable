@@ -68,7 +68,7 @@ require dirname(__FILE__) . '/include/email.php';
             echo "<td>" . $row['name'] . "</td>";
             echo "<td>" . $row['short'] . "</td>";
             echo "<td>" . $row['code'] . "</td>";
-            echo "<td><input type='text' class=\"form-control\" placeholder='Enter section (A || A# || Gr#)' name=\"sections[]\"/>";
+            echo "<td><input type='text' class=\"form-control\" placeholder='Enter section like A or A1 or GR1' name=\"sections[]\"/>";
             echo "</tr>";
         }
     }
@@ -138,12 +138,9 @@ require dirname(__FILE__) . '/include/email.php';
                         alertUser('Invalid section');
                         die();
                     }
-                    if(strlen($sectionstmp[$i]) == 1) {
-                        $sectionstmp[$i] = strtoupper($sectionstmp[$i]);
-                    } else if (strlen($sectionstmp[$i]) == 3) {
-                        $sectionstmp[$i][0] = 'G';
-                        $sectionstmp[$i][1] = 'r';
-                    }
+
+                    $sectionstmp[$i] = strtoupper($sectionstmp[$i]);
+                    
                     $subjects = $subjects . ($i + 1) . ",";
                     $sections = $sections . $sectionstmp[$i] . ",";
                 }

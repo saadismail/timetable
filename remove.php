@@ -89,7 +89,7 @@ require dirname(__FILE__) . '/include/email.php';
             if (!$developmentMode) {
                 $mail->addAddress($email);
                 $mail->Subject = "Confirm your email address";
-                $mail->Body = "Open this link to confirm the ownership of your email address: "."<a href=\"http://".$_SERVER['SERVER_NAME']."/removeVer.php?id=$string&email=$email\">Confirm</a>";
+                $mail->Body = "Open this link to confirm the ownership of your email address: "."<a href=\"http://".$_SERVER['SERVER_NAME']."/removeVer.php?id=$string&email=$email\">Confirm</a><br><br>You can ignore this email if you did not request your account deletion @ timetable.host.";
                 if ($mail->send()) {
                 	alertUser("Please check your email inbox for confirmation");
                 } else {

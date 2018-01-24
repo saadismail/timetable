@@ -19,24 +19,18 @@ $day_of_week = jddayofweek($julianday);
 // Stop execution if next day is weekend or invalid $day_of_week
 if ($day_of_week < 1 || $day_of_week > 5) die();
 
-/** PHPExcel_IOFactory */
-require_once dirname(__FILE__) . '/../Classes/PHPExcel/IOFactory.php';
+require_once dirname(__FILE__) . '/../vendor/autoload.php';
 
-$cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
-$cacheSettings = array( ' memoryCacheSize ' => '8MB');
-PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
+$reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader("Xlsx");
+$reader->setReadDataOnly(true);
 
-$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-$objReader->setReadDataOnly(true);
 try {
-    $objPHPExcel = $objReader->load(dirname(__FILE__) . "/../include/BSCS-modified.xlsx");
+    $spreadsheet = $reader->load(dirname(__FILE__) . "/../include/BSCS-modified.xlsx");
 } catch (Exception $e) {
-    echo $e->getMessage();
-    die();
+    die($e->getMessage());
 }
 
-// $day_of_week-1 as sheet starts from 0 while $day_of_week has 1 for Monday
-$worksheet = $objPHPExcel->setActiveSheetIndex(($day_of_week-1));
+$worksheet = $spreadsheet->setActiveSheetIndex($day_of_week-1);
 
 $sql = "SELECT `id`, `active`, `name`, `email`, `subjects`, `sections` FROM students";
 $result = $conn->query($sql);
@@ -74,27 +68,25 @@ if ($result->num_rows > 0) {
                 $cellIterator = $column->getCellIterator();
                 foreach ($cellIterator as $cell) {
                     if (!is_null($cell) && !is_null($cell->getCalculatedValue())) {
-                        if ((stripos($cell->getCalculatedValue(), $short . ' ') !== false || stripos($cell->getCalculatedValue(), $short . '-') !== false) && strpos(ltrim($cell->getCalculatedValue()), $short) === 0) {
-                            // Dont show labs for course classes
-                            if (strpos($short, "Lab") == false && strpos($cell->getCalculatedValue(), "Lab") == false || strpos($short, "Lab") !== false && strpos($cell->getCalculatedValue(), "Lab") !== false) {if (strripos($cell->getCalculatedValue(), ' ' . $section . ' ') !== false  || strripos($cell->getCalculatedValue(), '-' . $section) !== false) {
-                                    $colindex = substr($cell->getCoordinate(), 0, 1);
-                                    $rowindex = substr($cell->getCoordinate(), 1, 2);
-                                    $timing = $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue();
-                                    $room = $objPHPExcel->getActiveSheet()->getCell('A' . $rowindex)->getValue();
-                                    $subject = $cell->getCalculatedValue();
-                                    // Manipulate $timing for labs (assumes that labs are of 3 hours)
-                                    if (strpos($cell->getCalculatedValue(), "Lab") !== false) {
-                                        $firstTiming = explode('-', $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue());
-                                        $colindex++; $colindex++;
-                                        $lastTiming = explode('-', $objPHPExcel->getActiveSheet()->getCell($colindex . '3')->getValue());
-                                        $timing = $firstTiming[0].'-'.$lastTiming[1];
-                                    }
-                                    $entries[$current]['subject'] = $subject;
-                                    $entries[$current]['timing'] = $timing;
-                                    $entries[$current]['room'] = $room;
-                                    $current++;
-                                }
+                        if (foundClass($cell->getCalculatedValue(), $short, $section)) {
+                            $colindex = substr($cell->getCoordinate(), 0, 1);
+                            $rowindex = substr($cell->getCoordinate(), 1, 2);
+                            $timing = $spreadsheet->getActiveSheet()->getCell($colindex . '3')->getValue();
+                            $room = $spreadsheet->getActiveSheet()->getCell('A' . $rowindex)->getValue();
+                            $subject = $cell->getCalculatedValue();
+
+                            // Manipulate $timing for labs (assumes that labs are of 3 hours)
+                            if (strpos($cell->getCalculatedValue(), "Lab") !== false) {
+                                $firstTiming = explode('-', $spreadsheet->getActiveSheet()->getCell($colindex . '3')->getValue());
+                                $colindex++; $colindex++;
+                                $lastTiming = explode('-', $spreadsheet->getActiveSheet()->getCell($colindex . '3')->getValue());
+                                $timing = $firstTiming[0].'-'.$lastTiming[1];
                             }
+
+                            $entries[$current]['subject'] = $subject;
+                            $entries[$current]['timing'] = $timing;
+                            $entries[$current]['room'] = $room;
+                            $current++;
                         }
                     }
                 }

@@ -55,29 +55,27 @@ if (isset($_GET['email'])) {
 	                $cellIterator = $column->getCellIterator();
 	                foreach ($cellIterator as $cell) {
 	                    if (!is_null($cell) && !is_null($cell->getCalculatedValue())) {
-	                        if (strpos($cell->getCalculatedValue(), $short) !== false && strpos(ltrim($cell->getCalculatedValue()), $short) === 0) {
-	                            // Dont show labs for course classes
-	                            if (strpos($short, "Lab") == false && strpos($cell->getCalculatedValue(), "Lab") == false || strpos($short, "Lab") !== false && strpos($cell->getCalculatedValue(), "Lab") !== false) {
-	                            	if (strripos($cell->getCalculatedValue(), ' ' . $section . ' ') !== false  || strripos($cell->getCalculatedValue(), '-' . $section) !== false) {
-	                                    $colindex = substr($cell->getCoordinate(), 0, 1);
-	                                    $rowindex = substr($cell->getCoordinate(), 1, 2);
-	                                    $timing = $spreadsheet->getActiveSheet()->getCell($colindex . '3')->getValue();
-	                                    $room = $spreadsheet->getActiveSheet()->getCell('A' . $rowindex)->getValue();
-	                                    $subject = $cell->getCalculatedValue();
-	                                    // Manipulate $timing for labs (assumes that labs are of 3 hours)
-	                                    if (strpos($cell->getCalculatedValue(), "Lab") !== false) {
-	                                        $firstTiming = explode('-', $spreadsheet->getActiveSheet()->getCell($colindex . '3')->getValue());
-	                                        $colindex++; $colindex++;
-	                                        $lastTiming = explode('-', $spreadsheet->getActiveSheet()->getCell($colindex . '3')->getValue());
-	                                        $timing = $firstTiming[0].'-'.$lastTiming[1];
-	                                    }
-	                                    $entries[$current]['subject'] = $subject;
-	                                    $entries[$current]['timing'] = $timing;
-	                                    $entries[$current]['room'] = $room;
-	                                    $current++;
-	                                }
+
+	                    	if (foundClass($cell->getCalculatedValue(), $short, $section)) {
+	                    		$colindex = substr($cell->getCoordinate(), 0, 1);
+	                            $rowindex = substr($cell->getCoordinate(), 1, 2);
+	                            $timing = $spreadsheet->getActiveSheet()->getCell($colindex . '3')->getValue();
+	                            $room = $spreadsheet->getActiveSheet()->getCell('A' . $rowindex)->getValue();
+	                            $subject = $cell->getCalculatedValue();
+
+	                            // Manipulate $timing for labs (assumes that labs are of 3 hours)
+	                            if (strpos($cell->getCalculatedValue(), "Lab") !== false) {
+	                                $firstTiming = explode('-', $spreadsheet->getActiveSheet()->getCell($colindex . '3')->getValue());
+	                                $colindex++; $colindex++;
+	                                $lastTiming = explode('-', $spreadsheet->getActiveSheet()->getCell($colindex . '3')->getValue());
+	                                $timing = $firstTiming[0].'-'.$lastTiming[1];
 	                            }
-	                        }
+
+	                            $entries[$current]['subject'] = $subject;
+	                            $entries[$current]['timing'] = $timing;
+	                            $entries[$current]['room'] = $room;
+	                            $current++;
+	                    	}
 	                    }
 	                }
 	            }
