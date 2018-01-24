@@ -4,7 +4,7 @@
 $version="V1.0";
 
 // Don't send emails if development mode is on
-$developmentMode = False;
+$developmentMode = True;
 
 // Google ReCaptcha
 $recaptchaSiteKey = "6LcPUjIUAAAAAEXaFcTIOAzvghTo8TpbTFsxA2tv";
