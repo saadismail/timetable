@@ -8,6 +8,7 @@ require "include/functions.php";
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TimeTable Notifier</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="include/custom.css">
@@ -15,16 +16,24 @@ require "include/functions.php";
 
 <body>
 
-<div class="container">
-    <h1 style="text-align: center; margin-top: 40px;">TimeTable Notifier</h1>
+<div class="container-fluid">
+    <img class="img-responsive" style="padding-top: 20px;" src="include/logo.png"><br>
     <p style="text-align: center; margin-bottom: 30px;">This is an unofficial timetable notifier for Computer Science students of FAST-NUCES Karachi campus.<br>Students register themselves with the register button initially & then an email is sent daily with the schedule of their next day.</p>
     <div class="row">
         <a href="register.php"><div class="col-sm-4 text-center"><button href="register.php" type="button" class="btn btn-primary btn-lg">Register</button></div></a>
         <a href="remove.php"><div class="col-sm-4 text-center"><button type="button" class="btn btn-primary btn-lg">Remove</button></div></a>
         <a href="help.html"><div class="col-sm-4 text-center"><button type="button" class="btn btn-primary btn-lg">Help</button></div></a>
     </div>
+
+    <br><br>
+
+    <div class="row">
+        <div class="col-sm-6 text-center"><button type="button" onClick="show()" class="btn btn-primary btn-lg">Issue/Feedback</button></div>
+        
+        <a target="_blank" href="https://play.google.com/store/apps/details?id=host.timetable.timetablenotifier"><div class="col-sm-6 text-center"><button type="button" class="btn btn-primary btn-lg">Android App</button></div></a>
+    </div>
+
     <br>
-    <div class="row"><div class="col-sm-12 text-center"><button type="button" onClick="show()" class="btn btn-primary btn-lg">Issue/Feedback</button></div></div>
         
     <form id="ajax-contact" method="post" action="include/feedback.php" class="form-horizontal" style="display:none;">
     <br>

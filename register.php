@@ -10,84 +10,95 @@ require dirname(__FILE__) . '/include/email.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Register</title>
     <?php if(file_exists("include/bootstrap.min.css")) echo "<link rel=\"stylesheet\" href=\"include/bootstrap.min.css\">"; 
     else echo "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">"; ?>
 </head>
 
 <body>
-<div class="container">
+<div class="wrapper container">
 
 <h3 style="text-align: center;">Register</h3>
 <br>
 
 <form class="form-horizontal" method="post">
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="name">Name:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="name" name="name" required placeholder="Enter name">
+    <div class="row">
+        <div class="form-group">
+            <label class="control-label col-sm-2 col-xs-2" for="name">Name:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" name="name" required placeholder="Enter name">
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="batch">Batch:</label>
-        <div class="col-sm-10">
-            <input type="number" class="form-control" id="batch" name="batch" required placeholder="Enter batch (201#)">
+    <div class="row">
+        <div class="form-group">
+            <label class="control-label col-sm-2 col-xs-2" for="batch">Batch:</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="batch" name="batch" required placeholder="Enter batch (201#)">
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="email">Email:</label>
-        <div class="col-sm-10">
-            <input type="email" class="form-control" id="email" name="email" required placeholder="Enter email (k1#####@nu.edu.pk)" pattern="k1[0-9]{5}@nu.edu.pk$">
+    <div class="row">
+        <div class="form-group">
+            <label class="control-label col-sm-2 col-xs-2" for="email">Email:</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="email" name="email" required placeholder="Enter email (k1#####@nu.edu.pk)" pattern="k1[0-9]{5}@nu.edu.pk$">
+            </div>
         </div>
     </div>
 
-    <div class="form-group">
-        <br><b>NOTE:</b> You should put sections as per NEON for all the subjects. Those can be different for different subjects.<br>
+    <div class="row">
+        <br><b>NOTE:</b> You should put sections as per NEON for all the subjects. Those can be different for different subjects.<br><br>
     </div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Short</th>
-            <th>Code</th>
-            <th>Section</th>
-        </tr>
-        </thead>
-        <tbody>
 
-<?php
+    <div class="table-responsive-sm">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Short</th>
+                <th>Code</th>
+                <th>Section</th>
+            </tr>
+            </thead>
 
-    $sql = "SELECT id, name, code, short FROM subjects";
-    $result = $conn->query($sql);
+            <tbody>
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<th scope=\"row\">" . $row['id'] . "</th>";
-            echo "<td>" . $row['name'] . "</td>";
-            echo "<td>" . $row['short'] . "</td>";
-            echo "<td>" . $row['code'] . "</td>";
-            echo "<td><input type='text' class=\"form-control\" placeholder='Enter section like A or A1 or GR1' name=\"sections[]\"/>";
-            echo "</tr>";
-        }
-    }
-    ?>
+                <?php
+                    $sql = "SELECT id, name, code, short FROM subjects";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<th scope=\"row\">" . $row['id'] . "</th>";
+                            echo "<td>" . $row['name'] . "</td>";
+                            echo "<td>" . $row['short'] . "</td>";
+                            echo "<td>" . $row['code'] . "</td>";
+                            echo "<td><input type='text' class=\"form-control\" placeholder='Enter section like A or A1 or GR1' name=\"sections[]\"/>";
+                            echo "</tr>";
+                        }
+                    }
+                ?>
             </tbody>
         </table>
+    </div>
 
-        <div class="form-group">
-            <div class="text-center pull-right">
-                <?php echo "<div class=\"g-recaptcha\" data-sitekey=\"".$recaptchaSiteKey."\"></div>";?> 
-            </div>
+    <div class="row">
+        <div class="text-center pull-right">
+            <?php echo "<div class=\"g-recaptcha\" data-sitekey=\"".$recaptchaSiteKey."\"></div>";?> 
+            <br>
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="pull-right">
-                <button id="submit" type="submit" name="submit" class="btn btn-primary">Register</button>
-            </div>
+    <div class="row">
+        <div class="pull-right">
+            <button id="submit" type="submit" name="submit" class="btn btn-primary">Register</button>
         </div>
-    </form>
+    </div>
+</form>
 
 <?php
     if (isset($_POST['submit'])) {

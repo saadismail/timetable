@@ -1,1 +1,23 @@
-.g-recaptcha div { margin-left: auto; margin-right: auto;}
+.g-recaptcha div {
+	margin-left: auto; margin-right: auto;
+}
+
+.hidden {
+     display:none;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.img-responsive {
+    margin: 0 auto;
+}
