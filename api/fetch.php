@@ -46,6 +46,7 @@ if (isset($_GET['email'])) {
         	$current = 0;
 
         	for ($i=0; $i<sizeof($sections); $i++) {
+        		if ($subjects[$i] == 12) $sections[$i] = preg_replace('/[0-9]+/', '', $sections[$i]); // DLD-Lab only have sections like A/B and not A1/B1/A2/B2
 	            $sql = "SELECT `short` FROM subjects WHERE `id` = '$subjects[$i]'";
 	            $row = $conn->query($sql)->fetch_assoc();
 	            $short = $row['short'];
