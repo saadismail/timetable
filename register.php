@@ -17,6 +17,9 @@ require dirname(__FILE__) . '/include/email.php';
 </head>
 
 <body>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <div class="wrapper container">
 
 <h3 style="text-align: center;">Register</h3>
@@ -49,14 +52,14 @@ require dirname(__FILE__) . '/include/email.php';
     </div>
 
     <div class="row">
-        <br><b>NOTE:</b> You should put sections as per NEON for all the subjects. Those can be different for different subjects.<br><br>
+        <br><b>NOTE:</b> You should put the section which is nearest to the course's short code in the excel timetable.<br><br>
     </div>
 
     <div class="table-responsive-sm">
         <table class="table">
             <thead>
             <tr>
-                <th>ID</th>
+                <!-- <th>ID</th> -->
                 <th>Name</th>
                 <th>Short</th>
                 <th>Code</th>
@@ -67,17 +70,19 @@ require dirname(__FILE__) . '/include/email.php';
             <tbody>
 
                 <?php
-                    $sql = "SELECT id, name, code, short FROM subjects";
+                    $sql = "SELECT id, name, code, short, batch FROM subjects ORDER BY batch DESC, name ASC";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<th scope=\"row\">" . $row['id'] . "</th>";
+                            $id = $row['id'] - 1;
+                            if ($row['batch'] == "0") echo "<tr style=\"display:none;\">";
+                            else echo "<tr>";
+                            // echo "<th scope=\"row\">" . $row['id'] . "</th>";
                             echo "<td>" . $row['name'] . "</td>";
                             echo "<td>" . $row['short'] . "</td>";
                             echo "<td>" . $row['code'] . "</td>";
-                            echo "<td><input type='text' class=\"form-control\" placeholder='Enter section like A or A1 or GR1' name=\"sections[]\"/>";
+                            echo "<td><input type='text' class=\"form-control\" placeholder='Enter section like A or A1 or GR1' name=\"sections[$id]\"/>";
                             echo "</tr>";
                         }
                     }
@@ -93,7 +98,7 @@ require dirname(__FILE__) . '/include/email.php';
         </div>
     </div>
 
-    <div class="row">
+    <div style="padding-bottom: 20px;" class="row">
         <div class="pull-right">
             <button id="submit" type="submit" name="submit" class="btn btn-primary">Register</button>
         </div>
@@ -101,9 +106,12 @@ require dirname(__FILE__) . '/include/email.php';
 </form>
 
 <?php
+
     if (isset($_POST['submit'])) {
+
         if (!isset($_POST['sections']) || !isset($_POST['name']) || !isset($_POST['batch']) || !isset($_POST['email'])) {
-            die("Stop");
+            alertUser("Enter all details");
+            die();
         }
 
         if (!preg_match("/^[a-zA-Z\s]*$/", $_POST['name'])) {
@@ -208,7 +216,6 @@ require dirname(__FILE__) . '/include/email.php';
 ?>
 </div>
 
-<script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
 
 </html>

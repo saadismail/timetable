@@ -17,6 +17,9 @@ require dirname(__FILE__) . '/include/email.php';
 </head>
 
 <body>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <div class="container">
 
 <h3 style="text-align: center;">Remove</h3>
@@ -104,8 +107,6 @@ require dirname(__FILE__) . '/include/email.php';
     }
 ?>
 </div>
-
-<script src='https://www.google.com/recaptcha/api.js'></script>
 
 </body>
 </html>

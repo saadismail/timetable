@@ -15,6 +15,9 @@ require "include/functions.php";
 </head>
 
 <body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="include/app.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 <div class="container-fluid">
     <img class="img-responsive" style="padding-top: 20px;" src="include/logo.png"><br>
@@ -72,8 +75,6 @@ require "include/functions.php";
     <p style="text-align: center; margin-top: 30px;"><b>This is still in beta mode so you should not be relying only on it.</b></p>
     <p style="text-align: center; margin-top: -10px;">Feel free to inform me at k164060@nu.edu.pk in case of any issues or if you have any feedback.</p>
 </div>
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="include/app.js"></script>
+
 </body>
 </html>
