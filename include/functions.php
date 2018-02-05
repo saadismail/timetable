@@ -1,7 +1,7 @@
 <?php
 
 // Current version of timetable being used
-$version="V3.0";
+$version="V4.0";
 
 // Don't send emails if development mode is on
 $developmentMode = True;
@@ -21,18 +21,25 @@ function generateRandomString($length = 10) {
     return $randomString;
 }
 
-function foundClass ($subject, $short, $section) {
-    if ((strpos($subject, $short . ' ') !== false || strpos($subject, $short . '-') !== false) && strpos(ltrim($subject), $short) === 0) {
+function foundClass ($email, $subject, $short, $section) {
+    if ($email[0] == 'k') {
+        if ((strpos($subject, $short . ' ') !== false || strpos($subject, $short . '-') !== false) && strpos(ltrim($subject), $short) === 0) {
 
-        // Dont show labs for course classes
-        if (strpos($short, "Lab") == false && strpos($subject, "Lab") == false || strpos($short, "Lab") !== false && strpos($subject, "Lab") !== false) {
+            // Dont show labs for course classes
+            if (strpos($short, "Lab") == false && strpos($subject, "Lab") == false || strpos($short, "Lab") !== false && strpos($subject, "Lab") !== false) {
 
-            if (strpos($subject, ' ' . $section . ' ') !== false  || strpos($subject, '-' . $section) !== false || strpos($subject, ' ' . $section . '+') !== false  || strpos($subject, '+' . $section . ' ') !== false ) {
+                if (strpos($subject, ' ' . $section . ' ') !== false  || strpos($subject, '-' . $section) !== false || strpos($subject, ' ' . $section . '+') !== false  || strpos($subject, '+' . $section . ' ') !== false ) {
 
-                return true;
+                    return true;
+                }
             }
         }
+    } else if ($email[0] == 'p') {
+        if (strpos($subject, $short) !== false) {
+            
+        }
     }
+
     return false;
 }
 
