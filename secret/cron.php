@@ -69,7 +69,7 @@ if ($result->num_rows > 0) {
                 $cellIterator = $column->getCellIterator();
                 foreach ($cellIterator as $cell) {
                     if (!is_null($cell) && !is_null($cell->getCalculatedValue())) {
-                        if (foundClass($cell->getCalculatedValue(), $short, $section)) {
+                        if (foundClass($email, $cell->getCalculatedValue(), $short, $section)) {
                             $colindex = substr($cell->getCoordinate(), 0, 1);
                             $rowindex = substr($cell->getCoordinate(), 1, 2);
                             $timing = $spreadsheet->getActiveSheet()->getCell($colindex . '3')->getValue();
