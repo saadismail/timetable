@@ -1,6 +1,6 @@
 <?php
 
-require dirname(__FILE__) . '/include/db-pwr.php';
+require dirname(__FILE__) . '/include/db.php';
 require dirname(__FILE__) . "/include/functions.php";
 require dirname(__FILE__) . '/include/email.php';
 
