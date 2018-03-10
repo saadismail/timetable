@@ -1,7 +1,7 @@
 <?php
 
 // Current version of timetable being used
-$version="V5.1";
+$version="V6.0";
 
 // Don't send emails if development mode is on
 $developmentMode = True;
