@@ -52,7 +52,7 @@ require dirname(__FILE__) . '/include/email.php';
     </div>
 
     <div class="row">
-        <br><b>NOTE:</b> You should put the section which is nearest to the course's short code in the excel timetable.<br><br>
+        <br><b>NOTE:</b> You should put the section which is nearest to the course's short code in the excel timetable.<br>Sections inside brackets in timetable are removed (to avoid false-positives) so don't use those while registering here.<br><br>
     </div>
 
     <div class="table-responsive-sm">
@@ -153,13 +153,14 @@ require dirname(__FILE__) . '/include/email.php';
             for ($i = 0; $i < sizeof($sectionstmp); $i++) {
                 if ($sectionstmp[$i]) {
                     $sectionstmp[$i] = removeAllDashes($sectionstmp[$i]);
+                    $sectionstmp[$i] = trim($sectionstmp[$i]);
+                    $sectionstmp[$i] = transformSectionCase($sectionstmp[$i]);
+
                     if (strlen($sectionstmp[$i]) > 3 || !preg_match("/^[a-i]$/i", $sectionstmp[$i]) && !preg_match("/^[a-i][1-2]{1}$/i", $sectionstmp[$i]) && !preg_match("/^GR[1-9]$/i", $sectionstmp[$i])) {
                         alertUser('Invalid section');
                         die();
                     }
 
-                    $sectionstmp[$i] = trim($sectionstmp[$i]);
-                    $sectionstmp[$i] = transformSectionCase($sectionstmp[$i]);
 
                     $subjects = $subjects . ($i + 1) . ",";
                     $sections = $sections . $sectionstmp[$i] . ",";

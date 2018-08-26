@@ -113,7 +113,7 @@ require dirname(__FILE__) . '/include/email.php';
     form.addEventListener("submit", function(event){
             if (grecaptcha.getResponse() === '') {
                 event.preventDefault();
-                alert('Please check the recaptcha before submitting the registration form.');
+                alert('Please check the recaptcha before submitting the account removal form.');
             }
         }
         , false);
