@@ -22,7 +22,7 @@
 	$mail->Port = 587;                                    // TCP port to connect to
 	$mail->XMailer = ' ';								  // Remove PHPMailer from headers
 	$mail->From = ' ';
-	$mail->setFrom('smtp@timetable.host', 'TimeTable Notifier');
+	$mail->setFrom('smtp@timetable.ml', 'TimeTable Notifier');
 	$mail->addReplyTo('k164060@nu.edu.pk', 'Saad Ismail');
 
 	// SendGrid SMTP
@@ -34,6 +34,5 @@
 	// $mail->Host = 'ghost.mxroute.com';  // Specify main and backup SMTP servers
 	// $mail->Username = 'smtp@timetable.host';                 // SMTP username
 	// $mail->Password = 'dQFPDE2LWN6c';                           // SMTP password
-	
-	
+
 ?>

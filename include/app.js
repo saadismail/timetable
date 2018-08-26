@@ -52,5 +52,5 @@ $(function() {
 
 function show()
 {
-document.getElementById('ajax-contact').style.display="block" ;
+document.getElementById('feedback-form').style.display="block" ;
 }

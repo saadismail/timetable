@@ -30,8 +30,14 @@ for ($i=0; $i<5; $i++) {
             if (!is_null($cell) && !is_null($cell->getCalculatedValue())) {
                 $string =  $cell->getCalculatedValue();
                 // $string2 =  preg_replace("/\([^)]+\)/","",$string);
-                $string2 =  preg_replace("/\(([^()]*+|(?R))*\)/","", $string);
-                $worksheet->setCellValue($cell->getCoordinate(), $string2);
+                // Remove "(", ")" & the content in between to avoid ambiguity in the section checks
+                $string =  preg_replace("/\(([^()]*+|(?R))*\)/","", $string);
+
+                //Trim extra spaces
+                $string = preg_replace('/\s+/', ' ', $string);
+                $string = trim($string);
+
+                $worksheet->setCellValue($cell->getCoordinate(), $string);
             }
         }
     }

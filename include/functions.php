@@ -1,10 +1,10 @@
 <?php
 
 // Current version of timetable being used
-$version="V7.0";
+$version="V0.0";
 
 // Don't send emails if development mode is on
-$developmentMode = True;
+$developmentMode = False;
 
 // Google ReCaptcha
 $recaptchaSiteKey = "6LcPUjIUAAAAAEXaFcTIOAzvghTo8TpbTFsxA2tv";
@@ -22,21 +22,14 @@ function generateRandomString($length = 10) {
 }
 
 function foundClass ($email, $subject, $short, $section) {
-    if ($email[0] == 'k') {
-        if ((strpos($subject, $short . ' ') !== false || strpos($subject, $short . '-') !== false) && strpos(ltrim($subject), $short) === 0) {
+    if ((strpos($subject, $short . ' ') !== false || strpos($subject, $short . '-') !== false) && strpos(ltrim($subject), $short) === 0) {
 
-            // Dont show labs for course classes
-            if (strpos($short, "Lab") == false && strpos($subject, "Lab") == false || strpos($short, "Lab") !== false && strpos($subject, "Lab") !== false) {
+        // Dont show labs for course classes
+        if (strpos($short, "Lab") == false && strpos($subject, "Lab") == false || strpos($short, "Lab") !== false && strpos($subject, "Lab") !== false) {
 
-                if (strpos($subject, ' ' . $section . ' ') !== false  || strpos($subject, '-' . $section) !== false || strpos($subject, ' ' . $section . '+') !== false  || strpos($subject, '+' . $section . ' ') !== false ) {
-
-                    return true;
-                }
+            if (strpos($subject, ' ' . $section . ' ') !== false  || strpos($subject, '-' . $section) !== false || strpos($subject, ' ' . $section . '+') !== false  || strpos($subject, '+' . $section . ' ') !== false ) {
+                return true;
             }
-        }
-    } else if ($email[0] == 'p') {
-        if (strpos($subject, $short) !== false) {
-            
         }
     }
 
@@ -45,6 +38,12 @@ function foundClass ($email, $subject, $short, $section) {
 
 function removeAllDashes($string) {
     return str_replace("-", "", $string);
+}
+
+function transformSectionCase($section) {
+    $section = strtoupper($section);
+    $section = str_replace("GR", "Gr", $section);
+    return $section;
 }
 
 // Displays $message in javascript alert box

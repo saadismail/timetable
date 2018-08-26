@@ -113,7 +113,8 @@ if ($result->num_rows > 0) {
             $mail->clearAddresses();
             $mail->addAddress($email, $name);
             $mail->Subject = "TimeTable Notifier";
-            $mail->Body = $message;
+            $mail->msgHTML($message);
+//            $mail->Body = $message;
 
             if (! $mail->send()) {
                 die("Something went wrong");

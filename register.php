@@ -25,7 +25,7 @@ require dirname(__FILE__) . '/include/email.php';
 <h3 style="text-align: center;">Register</h3>
 <br>
 
-<form class="form-horizontal" method="post">
+<form id="register-form" class="form-horizontal" method="post">
     <div class="row">
         <div class="form-group">
             <label class="control-label col-sm-2 col-xs-2" for="name">Name:</label>
@@ -158,8 +158,9 @@ require dirname(__FILE__) . '/include/email.php';
                         die();
                     }
 
-                    $sectionstmp[$i] = strtoupper($sectionstmp[$i]);
-                    
+                    $sectionstmp[$i] = trim($sectionstmp[$i]);
+                    $sectionstmp[$i] = transformSectionCase($sectionstmp[$i]);
+
                     $subjects = $subjects . ($i + 1) . ",";
                     $sections = $sections . $sectionstmp[$i] . ",";
                 }
@@ -199,7 +200,7 @@ require dirname(__FILE__) . '/include/email.php';
                 $mail->addAddress($email, $name);
                 $mail->Subject = "Verify your email address";
 
-                $mail->Body = "Hi $name,<br><br>Thank you for registering for Timetable Notifications. Open this link to verify your email address: "."<a href=\"https://".$_SERVER['SERVER_NAME']."/activate.php?id=$string&email=$email\">Verify</a><br><br>NOTE: You will not recieve any notification unless you verify your email address.<br><br>Have a great day!";
+                $mail->Body = "Hi $name,<br><br>Thank you for registering for Timetable Notifier. Open this link to verify your email address: "."<a href=\"https://".$_SERVER['SERVER_NAME']."/activate.php?id=$string&email=$email\">Verify</a><br><br>NOTE: You will not recieve any further emails unless you verify your email address.<br><br>Have a great day!";
                 if ($mail->send()) {
                     $message .= "Please check your email inbox for verfication email";
                     alertUser("Registered Successfully, Please check your email for verification email");
@@ -215,6 +216,17 @@ require dirname(__FILE__) . '/include/email.php';
     }
 ?>
 </div>
+
+<script type="text/javascript">
+    var form = document.getElementById('register-form');
+    form.addEventListener("submit", function(event){
+            if (grecaptcha.getResponse() === '') {
+                event.preventDefault();
+                alert('Please check the recaptcha before submitting the registration form.');
+            }
+        }
+        , false);
+</script>
 
 </body>
 

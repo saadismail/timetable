@@ -21,24 +21,24 @@ require "include/functions.php";
 
 <div class="container-fluid">
     <img class="img-responsive" style="padding-top: 20px;" src="include/logo.png"><br>
-    <p style="text-align: center; margin-bottom: 30px;">This is an unofficial timetable notifier for Computer Science students of FAST-NUCES Karachi campus.<br>Students register themselves with the register button initially & then an email is sent daily with the schedule of their next day.</p>
+    <p style="text-align: center; margin-bottom: 30px;">This is an unofficial timetable notifier for Computer Science students of FAST-NUCES Karachi campus.<br>Students register themselves with the register button initially & then an email is sent daily with the schedule of their next day.<br>Students can also use Android/iOS app (links below) to have whole week timetable offline in their phones.</p>
     <div class="row">
         <a href="register.php"><div class="col-sm-4 text-center"><button href="register.php" type="button" class="btn btn-primary btn-lg">Register</button></div></a>
-        <a href="remove.php"><div class="col-sm-4 text-center"><button type="button" class="btn btn-primary btn-lg">Remove</button></div></a>
+        <a href="remove.php"><div class="col-sm-4 text-center"><button type="button" class="btn btn-primary btn-lg">Remove Account</button></div></a>
         <a href="help.html"><div class="col-sm-4 text-center"><button type="button" class="btn btn-primary btn-lg">Help</button></div></a>
     </div>
 
     <br><br>
 
     <div class="row">
-        <div class="col-sm-6 text-center"><button type="button" onClick="show()" class="btn btn-primary btn-lg">Issue/Feedback</button></div>
-        
-        <a target="_blank" href="https://play.google.com/store/apps/details?id=host.timetable.timetablenotifier"><div class="col-sm-6 text-center"><button type="button" class="btn btn-primary btn-lg">Android App</button></div></a>
+        <div class="col-sm-4 text-center"><button type="button" onClick="show()" class="btn btn-primary btn-lg">Issue/Feedback</button></div>
+        <a target="_blank" href="https://itunes.apple.com/us/app/fast-nu-khi-timetable-notifier/id1348624183"><div class="col-sm-4 text-center"><button type="button" class="btn btn-primary btn-lg">iOS App</button></div></a>
+        <a target="_blank" href="https://play.google.com/store/apps/details?id=host.timetable.timetablenotifier"><div class="col-sm-4 text-center"><button type="button" class="btn btn-primary btn-lg">Android App</button></div></a>
     </div>
 
     <br>
         
-    <form id="ajax-contact" method="post" action="include/feedback.php" class="form-horizontal" style="display:none;">
+    <form id="feedback-form" method="post" action="include/feedback.php" class="form-horizontal" style="display:none;">
     <br>
     <div style="font-weight: bold; text-align: center" id="form-messages"></div>
     <div class="form-group">
@@ -72,9 +72,20 @@ require "include/functions.php";
     </div>
     </form>
 
-    <p style="text-align: center; margin-top: 30px;"><b>This is still in beta mode so you should not be relying only on it.</b></p>
+    <p style="text-align: center; margin-top: 30px;"><b>This is still in beta mode so you should confirm that it fetches all your classes.</b></p>
     <p style="text-align: center; margin-top: -10px;">Feel free to inform me at k164060@nu.edu.pk in case of any issues or if you have any feedback.</p>
 </div>
+
+<script type="text/javascript">
+    var form = document.getElementById('feedback-form');
+    form.addEventListener("submit", function(event){
+            if (grecaptcha.getResponse() === '') {
+                event.preventDefault();
+                alert('Please check the recaptcha before submitting the feedback form.');
+            }
+        }
+        , false);
+</script>
 
 </body>
 </html>

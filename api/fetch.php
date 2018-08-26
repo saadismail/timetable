@@ -67,7 +67,11 @@ if (isset($_GET['email'])) {
 	                            // Manipulate $timing for labs (assumes that labs are of 3 hours)
 	                            if (strpos($cell->getCalculatedValue(), "Lab") !== false) {
 	                                $firstTiming = explode('-', $spreadsheet->getActiveSheet()->getCell($colindex . '3')->getValue());
-	                                $colindex++; $colindex++;
+	                                if (strpos($cell->getCalculatedValue(), "Eng") !== false || strpos($cell->getCalculatedValue(), "ICT") !== false) {
+	                                    $colindex++;
+                                    } else {
+                                        $colindex++; $colindex++;
+                                    }
 	                                $lastTiming = explode('-', $spreadsheet->getActiveSheet()->getCell($colindex . '3')->getValue());
 	                                $timing = $firstTiming[0].'-'.$lastTiming[1];
 	                            }
