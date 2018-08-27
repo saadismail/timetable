@@ -46,7 +46,7 @@ require dirname(__FILE__) . '/include/email.php';
         <div class="form-group">
             <label class="control-label col-sm-2 col-xs-2" for="email">Email:</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="email" name="email" required placeholder="Enter email (k1#####@nu.edu.pk)" pattern="k1[0-9]{5}@nu.edu.pk$">
+                <input type="email" class="form-control" id="email" name="email" required placeholder="Enter email (k1#####@nu.edu.pk)">
             </div>
         </div>
     </div>
@@ -121,11 +121,6 @@ require dirname(__FILE__) . '/include/email.php';
 
         if (!preg_match('/^[0-9]{4}$/', $_POST['batch'])) {
             alertUser("Batch should be exactly 4 digits i.e 2016");
-            die();
-        }
-
-        if(!preg_match("/^k1[0-9]{5}@nu\.edu\.pk$/", $_POST['email'])) {
-            alertUser("You must provide a Karachi student's nu.edu.pk email address to register.");
             die();
         }
 
