@@ -104,7 +104,11 @@ if ($result->num_rows > 0) {
         }
         $message .= "</table>";
         $message .= "<br>Version of timetable being used: ".$version."<br>";
-        $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK</b>';
+        $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK</b><br>';
+        $expected_hash = md5($id + $email);
+        $message .= "<br>If you want to stop receiving daily automated, scheduled emails then click this link: <a href=\"http://".$_SERVER['SERVER_NAME']."/disableEmails.php?id=$expected_hash&email=$email\">Disable daily scheduled Emails</a><br>";
+        $message .= 'You will still be able to use mobile application and will still recieve informative emails.';
+
         $message .= "</body></html>";
         echo $message;
 
