@@ -32,6 +32,12 @@ try {
 
 $worksheet = $spreadsheet->setActiveSheetIndex($day_of_week-1);
 
+if (isset($_SERVER['SERVER_NAME'])) {
+    $host = $_SERVER['SERVER_NAME'];
+} else {
+    $host = "timetable.ml";
+}
+
 $sql = "SELECT `id`, `active`, `name`, `email`, `subjects`, `sections` FROM students";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -106,7 +112,7 @@ if ($result->num_rows > 0) {
         $message .= "<br>Version of timetable being used: ".$version."<br>";
         $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK</b><br>';
         $expected_hash = md5($id + $email);
-        $message .= "<br>If you want to stop receiving daily automated, scheduled emails then click this link: <a href=\"http://".$_SERVER['SERVER_NAME']."/disableEmails.php?id=$expected_hash&email=$email\">Disable daily scheduled Emails</a><br>";
+        $message .= "<br>If you want to stop receiving daily automated, scheduled emails then click this link: <a href=\"http://".$host."/disableEmails.php?id=$expected_hash&email=$email\">Disable daily scheduled Emails</a><br>";
         $message .= 'You will still be able to use mobile application and will still recieve informative emails.';
 
         $message .= "</body></html>";
