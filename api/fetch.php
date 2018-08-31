@@ -15,6 +15,7 @@ try {
 }
 
 $response = array();
+$color_hexs = array("E8E39F", "FF8B94", "D2C0F2", "E3AFBC",  "EDC7B7", "C9D79C", "84CEEB", "BEC6D5", "8EE4AF", "DAAD86");
 
 if (isset($_GET['email'])) {
 	$email = $_GET['email'];
@@ -79,6 +80,7 @@ if (isset($_GET['email'])) {
 	                            $entries[$current]['subject'] = $subject;
 	                            $entries[$current]['timing'] = $timing;
 	                            $entries[$current]['room'] = $room;
+	                            $entries[$current]['color'] = $color_hexs[$i];
 	                            $current++;
 	                    	}
 	                    }
@@ -95,6 +97,7 @@ if (isset($_GET['email'])) {
 	        unset($entries);
 	    }
 
+	    $response['tt_version'] = $version;
         echo json_encode($response);
 
 	} else {
