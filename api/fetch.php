@@ -15,7 +15,7 @@ try {
 }
 
 $response = array();
-$color_hexs = array("E8E39F", "FF8B94", "D2C0F2", "E3AFBC",  "EDC7B7", "C9D79C", "84CEEB", "BEC6D5", "8EE4AF", "DAAD86");
+$color_hexs = array("4293452703", "4294937492", "4292002034", "4293111740",  "4293773239", "4291418012", "4286893803", "4290692821", "4287554735", "4292521350");
 
 if (isset($_GET['email'])) {
 	$email = $_GET['email'];
