@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bae76791-df40-4f40-8044-204152aa89f2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/api/fetch.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/fetch.php" afterDir="false" />
-    </list>
+    <list default="true" id="bae76791-df40-4f40-8044-204152aa89f2" name="Default" comment="" />
     <ignored path="tt.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -23,7 +21,7 @@
     <session id="695425737">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.12" value="2" />
           <entry key="project.open.time.13" value="1" />
@@ -294,7 +292,7 @@
       <workItem from="1535391284559" duration="2684000" />
       <workItem from="1535648115809" duration="2324000" />
       <workItem from="1535688833620" duration="2179000" />
-      <workItem from="1535902342672" duration="239000" />
+      <workItem from="1535902342672" duration="528000" />
     </task>
     <task id="LOCAL-00001" summary="Push updated code">
       <created>1496234962395</created>
@@ -328,11 +326,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70650000" />
+    <option name="totallyTimeSpent" value="70939000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31060606" />
       <window_info id="Structure" order="1" weight="0.25" />
