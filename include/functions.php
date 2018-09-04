@@ -28,6 +28,11 @@ function foundClass ($email, $subject, $short, $section) {
         if (strpos($short, "Lab") == false && strpos($subject, "Lab") == false || strpos($short, "Lab") !== false && strpos($subject, "Lab") !== false) {
 
             if (strpos($subject, ' ' . $section . ' ') !== false  || strpos($subject, '-' . $section) !== false || strpos($subject, ' ' . $section . '+') !== false  || strpos($subject, '+' . $section . ' ') !== false ) {
+                // Dirty fix for Cal-II classes shown for Cal-I with section I (reported by k181268@nu.edu.pk)
+                if (strpos($subject, 'Cal-II') !== false && strpos($short, 'Cal-II') == false) {
+                    return false;
+                }
+
                 return true;
             }
         }
