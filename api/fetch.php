@@ -80,7 +80,7 @@ if (isset($_GET['email'])) {
 	                            $entries[$current]['subject'] = $subject;
 	                            $entries[$current]['timing'] = $timing;
 	                            $entries[$current]['room'] = $room;
-	                            $entries[$current]['color'] = $color_hexs[$i];
+	                            $entries[$current]['color'] = $color_hexs[$i % sizeof($color_hexs)];
 	                            $current++;
 	                    	}
 	                    }
