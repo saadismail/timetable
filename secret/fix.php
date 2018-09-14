@@ -28,7 +28,12 @@ for ($i=0; $i<5; $i++) {
         $cellIterator = $column->getCellIterator();
         foreach ($cellIterator as $cell) {
             if (!is_null($cell) && !is_null($cell->getCalculatedValue())) {
+                $isAllSections = false;
                 $string =  $cell->getCalculatedValue();
+
+                if (strpos($string, 'All Sections') !== false) {
+                    $isAllSections = true;
+                }
                 // $string2 =  preg_replace("/\([^)]+\)/","",$string);
                 // Remove "(", ")" & the content in between to avoid ambiguity in the section checks
                 $string =  preg_replace("/\(([^()]*+|(?R))*\)/","", $string);
@@ -36,6 +41,10 @@ for ($i=0; $i<5; $i++) {
                 //Trim extra spaces
                 $string = preg_replace('/\s+/', ' ', $string);
                 $string = trim($string);
+
+                if ($isAllSections) {
+                    $string = $string . ' All Sections';
+                }
 
                 $worksheet->setCellValue($cell->getCoordinate(), $string);
             }

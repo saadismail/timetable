@@ -1,7 +1,7 @@
 <?php
 
 // Current version of timetable being used
-$version="V2.0";
+$version="V3.0";
 
 // Don't send emails if development mode is on
 $developmentMode = False;
@@ -26,6 +26,9 @@ function foundClass ($email, $subject, $short, $section) {
 
         // Dont show labs for course classes
         if (strpos($short, "Lab") == false && strpos($subject, "Lab") == false || strpos($short, "Lab") !== false && strpos($subject, "Lab") !== false) {
+            if (strpos($subject, 'All Sections') !== false) {
+                return true;
+            }
 
             if (strpos($subject, ' ' . $section . ' ') !== false  || strpos($subject, '-' . $section) !== false || strpos($subject, ' ' . $section . '+') !== false  || strpos($subject, '+' . $section . ' ') !== false ) {
                 // Dirty fix for Cal-II classes shown for Cal-I with section I (reported by k181268@nu.edu.pk)
