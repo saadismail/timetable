@@ -32,7 +32,7 @@ function foundClass ($email, $subject, $short, $section) {
 
             if (strpos($subject, ' ' . $section . ' ') !== false  || strpos($subject, '-' . $section) !== false || strpos($subject, ' ' . $section . '+') !== false  || strpos($subject, '+' . $section . ' ') !== false ) {
                 // Dirty fix for Cal-II classes shown for Cal-I with section I (reported by k181268@nu.edu.pk)
-                if (strpos($subject, 'Cal-II') !== false && strpos($short, 'Cal-II') == false) {
+                if (strpos($subject, 'Cal-II') !== false && strpos($short, 'Cal-II') === false) {
                     return false;
                 }
 
