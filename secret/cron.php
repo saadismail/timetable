@@ -38,7 +38,7 @@ if (isset($_SERVER['SERVER_NAME'])) {
     $host = "timetable.ml";
 }
 
-$sql = "SELECT `id`, `active`, `name`, `email`, `subjects`, `sections` FROM students";
+$sql = "SELECT `id`, `active`, `name`, `email`, `subjects`, `sections` FROM students WHERE major = 'KHI-CS'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -109,7 +109,7 @@ if ($result->num_rows > 0) {
             }
         }
         $message .= "</table>";
-        $message .= "<br>Version of timetable being used: ".$version."<br>";
+        $message .= "<br>Version of timetable being used: ".$cs_tt_version."<br>";
         $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK</b><br>';
         $expected_hash = md5($id + $email);
         $message .= "<br>If you want to stop receiving daily automated, scheduled emails then click this link: <a href=\"http://".$host."/disableEmails.php?id=$expected_hash&email=$email\">Disable daily scheduled Emails</a><br>";

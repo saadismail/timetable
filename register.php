@@ -76,9 +76,7 @@ require dirname(__FILE__) . '/include/email.php';
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             $id = $row['id'] - 1;
-                            if ($row['batch'] == "0") echo "<tr style=\"display:none;\">";
-                            else echo "<tr>";
-                            // echo "<th scope=\"row\">" . $row['id'] . "</th>";
+                            echo "<tr>";
                             echo "<td>" . $row['name'] . "</td>";
                             echo "<td>" . $row['short'] . "</td>";
                             echo "<td>" . $row['code'] . "</td>";
@@ -177,7 +175,7 @@ require dirname(__FILE__) . '/include/email.php';
         
         $message = "";
 
-        $sql = "INSERT INTO `students` (`id`, `active`, `name`, `batch`, `email`, `subjects`, `sections`) VALUES (NULL, '0', '$name', '$batch', '$email', '$subjects', '$sections')";
+        $sql = "INSERT INTO `students` (`id`, `active`, `name`, `batch`, `major`, `email`, `subjects`, `sections`) VALUES (NULL, '0', '$name', '$batch', 'KHI-CS', '$email', '$subjects', '$sections')";
         if ($conn->query($sql) == TRUE) {
             $message = "Successfully Registered\n";
             $string = generateRandomString(20);
