@@ -109,7 +109,7 @@ if ($result->num_rows > 0) {
             }
         }
         $message .= "</table>";
-        $message .= "<br>Version of timetable being used: ".$version."<br>";
+        $message .= "<br>Version of timetable being used: ".$cs_tt_version."<br>";
         $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK</b>';
         $message .= "</body></html>";
         unset($entries);

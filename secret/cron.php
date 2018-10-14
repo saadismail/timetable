@@ -75,7 +75,7 @@ if ($result->num_rows > 0) {
                 $cellIterator = $column->getCellIterator();
                 foreach ($cellIterator as $cell) {
                     if (!is_null($cell) && !is_null($cell->getCalculatedValue())) {
-                        if (foundClass($email, $cell->getCalculatedValue(), $short, $section)) {
+                        if (foundCSClass($email, $cell->getCalculatedValue(), $short, $section)) {
                             $colindex = substr($cell->getCoordinate(), 0, 1);
                             $rowindex = substr($cell->getCoordinate(), 1, 2);
                             $timing = $spreadsheet->getActiveSheet()->getCell($colindex . '3')->getValue();
@@ -109,7 +109,7 @@ if ($result->num_rows > 0) {
             }
         }
         $message .= "</table>";
-        $message .= "<br>Version of timetable being used: ".$version."<br>";
+        $message .= "<br>Version of timetable being used: ".$cs_tt_version."<br>";
         $message .= '<br><b>DO NOT RELY ON THIS, MUST DOUBLE-CHECK</b><br>';
         $expected_hash = md5($id + $email);
         $message .= "<br>If you want to stop receiving daily automated, scheduled emails then click this link: <a href=\"http://".$host."/disableEmails.php?id=$expected_hash&email=$email\">Disable daily scheduled Emails</a><br>";

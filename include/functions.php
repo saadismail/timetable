@@ -1,10 +1,11 @@
 <?php
 
 // Current version of timetable being used
-$version="V5.0";
+$cs_tt_version="V5.0";
+$ee_tt_version="V0.0";
 
 // Don't send emails if development mode is on
-$developmentMode = False;
+$developmentMode = True;
 
 // Google ReCaptcha
 $recaptchaSiteKey = "6LcPUjIUAAAAAEXaFcTIOAzvghTo8TpbTFsxA2tv";
@@ -21,7 +22,7 @@ function generateRandomString($length = 10) {
     return $randomString;
 }
 
-function foundClass ($email, $subject, $short, $section) {
+function foundCSClass ($email, $subject, $short, $section) {
     if ((strpos($subject, $short . ' ') !== false || strpos($subject, $short . '-') !== false) && strpos(ltrim($subject), $short) === 0) {
 
         // Dont show labs for course classes
@@ -41,6 +42,14 @@ function foundClass ($email, $subject, $short, $section) {
         }
     }
 
+    return false;
+}
+
+function foundEEClass($email, $subject, $short, $section) {
+    $shortToSearch = trim(explode("/", $subject)[0]);
+    if (strtoupper($short) === strtoupper($shortToSearch)) {
+        return true;
+    }
     return false;
 }
 
@@ -70,18 +79,26 @@ function cmp($a, $b)
     return ($timing1 < $timing2) ? 1 : -1;
 }
 
-function encrypt( $string ) {
-    $secret_key = 'MwREkEFS1L98D2sapTfPsHpMwAZT1wSm';
-    $secret_iv = 'WgutdoxidsxcZz4DKGA1tMT1Z77566Ec';
+function mapEEBatchToSheetNumber($batch) {
+    // Change this later when fall semester starts. Use index of worksheet in spreadsheet
+    // with presepective to batch/semester.
+    $batchMap = array('2018' => 0, '2017' => 1, '2016' => 2, '2015' => 3);
 
-    return openssl_encrypt($string, "AES-256-CBC", $secret_key, 0, $secret_iv);
+    if (array_key_exists($batch, $batchMap)) {
+        return $batchMap[$batch];
+    }
+
+    return 0;
 }
 
-function decrypt( $string ) {
-    $secret_key = 'MwREkEFS1L98D2sapTfPsHpMwAZT1wSm';
-    $secret_iv = 'WgutdoxidsxcZz4DKGA1tMT1Z77566Ec';
+function mapDayToIndex($dayInWord) {
+    $dayMap = array('Mon' => 0, 'Tue' => 1, 'Wed' => 2, 'Thu' => 3, 'Fri' => 4);
 
-    return openssl_decrypt($string, "AES-256-CBC", $secret_key, 0, $secret_iv);
+    if (array_key_exists($dayInWord, $dayMap)) {
+        return $dayMap[$dayInWord];
+    }
+
+    return 0;
 }
 
 ?>
