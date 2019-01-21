@@ -4,7 +4,7 @@
 $cs_tt_version="V7.0";
 
 // Don't send emails if development mode is on
-$developmentMode = True;
+$developmentMode = False;
 
 // Google ReCaptcha
 $recaptchaSiteKey = "6LcPUjIUAAAAAEXaFcTIOAzvghTo8TpbTFsxA2tv";
