@@ -42,6 +42,8 @@ for ($i=0; $i<5; $i++) {
                 $string = preg_replace('/\s+/', ' ', $string);
                 $string = trim($string);
 
+                $string = str_replace("GR", "Gr", $string);
+
                 if ($isAllSections) {
                     $string = $string . ' All Sections';
                 }
