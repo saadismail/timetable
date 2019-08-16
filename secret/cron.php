@@ -35,7 +35,7 @@ $worksheet = $spreadsheet->setActiveSheetIndex($day_of_week-1);
 if (isset($_SERVER['SERVER_NAME'])) {
     $host = $_SERVER['SERVER_NAME'];
 } else {
-    $host = "timetable.ml";
+    $host = "timetablenotifier.com";
 }
 
 $sql = "SELECT `id`, `active`, `name`, `email`, `subjects`, `sections` FROM students WHERE major = 'KHI-CS'";

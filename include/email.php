@@ -22,7 +22,7 @@
 	$mail->Port = 587;                                    // TCP port to connect to
 	$mail->XMailer = ' ';								  // Remove PHPMailer from headers
 	$mail->From = ' ';
-	$mail->setFrom('smtp@timetable.ml', 'TimeTable Notifier');
+	$mail->setFrom('smtp@timetablenotifier.com', 'TimeTable Notifier');
 	$mail->addReplyTo('k164060@nu.edu.pk', 'Saad Ismail');
 
 	// SendGrid SMTP
