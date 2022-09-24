@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) - do whatever you want to do with it
+
 # timetable
 Timetable app to parse FAST-NU KHI's CS timetable & send users their classes schedule in emails; there also used to be an Android app where we showed the timetable to users. More details on what it does: https://qr.ae/pv9SCE
 
